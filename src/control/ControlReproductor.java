@@ -1,0 +1,217 @@
+/*
+ * @(#)Rockolav2.java 1.82 09/10/19
+ *
+ * Armando Rivera Cervantes
+ * Copyright (c) Inc.
+ * Iztapalapa CDMX México
+ * Todos los derechos reservados.
+ *
+ * Más información y descripción del Copyright.
+ *
+ */
+
+package control;
+
+import TelematicoTools.FormMouse.formRoot;
+import TelematicoTools.Platillos.DiscoAux;
+import TelematicoTools.Platillos.DiscoOne;
+import Ventanas.Primaria;
+import Ventanas.Secundaria;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import modelo.claseCancion;
+import modelo.claseGenero;
+
+
+/**
+ *
+ * @author ArmandRC
+ */
+public class ControlReproductor implements MouseListener {
+   
+     
+    Primaria pri = new Primaria();
+    Secundaria sec = new Secundaria();
+    
+    //clases
+ //   private claseCancion cCancion;
+    
+    DiscoOne d1 = new DiscoOne();
+    DiscoAux dAux = new DiscoAux();
+    formRoot mueveMouse = new formRoot();
+    
+    //lista de favorita
+    private ArrayList<claseCancion> favoritas = new ArrayList<>();
+    private claseCancion cCan;
+    private claseGenero cGen;
+    private int codigo;
+    private int botonPlay = 0; // variable para controlar la reproducción
+    
+    DefaultListModel Flist = null;
+    
+    
+    public ControlReproductor(Primaria pri, Secundaria sec){
+        this.pri = pri;
+        this.sec = sec;
+        inicia();
+    }
+    
+    private void inicia (){
+        //Eventos de los botones
+        this.pri.butBuscar.addMouseListener (this);
+        this.pri.butPausa.addMouseListener (this);
+        this.pri.butPlay.addMouseListener (this);
+        //this.pri.butPreferencias.addMouseListener (this); // Se usará para modificar los datos del ususario.
+        this.pri.butStop.addMouseListener (this);
+        this.pri.buscaCancion.addMouseListener (this);
+        this.pri.configuracion.addMouseListener(this);
+        
+        //Evento para los temas de la lista favoritas
+        this.pri.jList1.addMouseListener (this);
+        
+        //se inicializa la ventana
+        this.pri.setSize (605, 700);
+        this.pri.setVisible (true);
+        mueveMouse.ControlProgress (this.pri.jProgressBar1,
+                this.pri.jSlider1, d1);
+        d1.getTimeRun (this.pri.jProgressBar1);
+    }
+
+    @Override
+    public void mouseClicked (MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mousePressed (MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased (MouseEvent e) {
+        
+                
+        if (e.getSource() == this.pri.butBuscar){
+             
+            
+        }else if (e.getSource() == this.pri.butPausa){
+            botonPlay = 1;
+            d1.pause();
+        }else if (e.getSource() == this.pri.butPlay){
+            switch (botonPlay){
+                case 0:
+                    prePlay();
+                break;
+                case 1:
+                    d1.continuar();
+                break;      
+            }
+        }else  if (e.getSource() == this.pri.butPreferencias){
+            getListaCanciones( getRutaCanciones(new File ("C:\\Users\\"
+                    + "ArmandRC\\Documents\\NetBeansProjects\\Rocko2\\mus")));
+            //mensaje("mis canciones");
+        }else  if (e.getSource() == this.pri.butStop){
+            d1.stop();
+            //mensaje("Parar");
+        }else if (e.getSource() == this.pri.buscaCancion){
+            d1.continuar();
+            //mensaje("Formulario de busqueda");
+        }else if (e.getSource() == this.pri.jList1){
+            botonPlay=0;
+            if (e.getClickCount() == 2){
+                prePlay();
+            }   
+        }/*else if (e.getSource() == this.pri.configuracion){
+            conf.setViseble(true);
+            
+        }*/
+    }
+
+    @Override
+    public void mouseEntered (MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited (MouseEvent e) {
+        
+    }
+    
+    private void prePlay (){
+        for(claseCancion items: favoritas){
+            if (items.getNombre().equals(this.pri.jList1.getSelectedValue())){
+                play(items);
+            }
+        }
+    }
+
+    
+    private void play (claseCancion item){
+      //  cCancion = item;
+        pri.nombreCan.setText (item.getNombre());
+        if (item.getNombre().endsWith(".mp3")){
+            d1.stop();
+            d1.PlayMP3(item.getMusica());
+        }else if (item.getNombre().endsWith(".wav")){
+            d1.stop();
+            d1.PlayWAV(item.getMusica());
+        }
+    }
+    
+    private ArrayList<File> getRutaCanciones (File root){
+        ArrayList<File> canciones =new ArrayList<>();
+        File[] archivos = root.listFiles();
+        for ( File patch : archivos){
+            if ( (patch.isDirectory()) && (!patch.isHidden())){
+                canciones.addAll (getRutaCanciones(root));
+                System.out.println("- - - >" + patch.getName() + "<- - -");
+            }else{
+                if(patch.getName().endsWith(".mp3") ||
+                        patch.getName().endsWith(".wav")){
+                    canciones.add(patch);
+                }
+            }
+        }
+        return canciones;
+    }
+    
+    
+    //generar una lista oculta de los temas que no son favoritos 
+    private void getListaCanciones(ArrayList<File> rootFiles){
+        Flist = new DefaultListModel();
+        pri.jList1.setModel(Flist);
+        
+        new Thread() {
+            @Override
+            public void run() {
+                favoritas = new ArrayList<> ();
+                for ( File items : rootFiles){
+                    cGen = new claseGenero();
+                    cCan = new claseCancion();
+                    //Obtener Genero
+                    codigo = (int) Math.round(Math.random() * 9999);
+                    // Lo siguiente sirve para crear el codigo como una cadena
+                    cGen.setCodigo(codigo + "");
+                    cGen.setGenero(dAux.getMetaDatos(items.toString()));
+                    //Cancion
+                    cCan.setCodigo(codigo + "");
+                    cCan.setNombre(items.getName());
+                    if(items.getName().endsWith(".mp3")){
+                        cCan.setDuracion(dAux.duracionMP3(items.toString()));
+                    }else if(items.getName().endsWith(".wav")){
+                        cCan.setDuracion(dAux.duracionWav(items.toString()));
+                    }
+                    cCan.setMusica(dAux.getBytes(items.toString()));
+                    cCan.setGenero(cGen);
+                    favoritas.add(cCan);
+                    Flist.addElement(items.getName());
+                    System.out.println(items.getName());
+                }
+            }
+        }.start();
+    }
+
+}
