@@ -5,6 +5,7 @@
  */
 package rocko2;
 
+import Ventanas.Perfil;
 import Ventanas.Primaria;
 import Ventanas.Secundaria;
 import control.ControlLista;
@@ -26,6 +27,10 @@ public class Rocko2 {
          
         ControlReproductor cR = new ControlReproductor(pri,sec);
         ControlLista cL = new ControlLista(sec);
+        
+        Perfil p = new Perfil();
+        p.setVisible(true);
+        
     }
     
 }
