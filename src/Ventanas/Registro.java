@@ -5,20 +5,9 @@
  */
 package Ventanas;
 
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import control.Datos;
-//import registro.Datos;
-
 /**
  *
- * @author Dani
+ * @author ArmandRC
  */
 public class Registro extends javax.swing.JFrame {
 
@@ -27,7 +16,6 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,346 +27,146 @@ public class Registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGrupRadio = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
-        btnAceptarR = new javax.swing.JButton();
-        btnCancelarR = new javax.swing.JButton();
-        jpSexo = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        rbMujer = new javax.swing.JRadioButton();
-        rbHombre = new javax.swing.JRadioButton();
+        texNombre = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtContrasena = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        butAceptar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Registro");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre");
 
         jLabel2.setText("Apellido");
 
-        jLabel4.setText("Correo Electronico");
+        jRadioButton1.setText("jRadioButton1");
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
+        jRadioButton2.setText("jRadioButton2");
 
-        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtApellidoKeyTyped(evt);
-            }
-        });
+        jLabel3.setText("jLabel3");
 
-        txtCorreo.setToolTipText("nombre.apellido@uacm.edu.mx");
-        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoFocusLost(evt);
-            }
-        });
+        texNombre.setText("jTextField1");
 
-        jLabel5.setText("Número telefonico");
+        jTextField2.setText("jTextField2");
 
-        txtNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroActionPerformed(evt);
-            }
-        });
-        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumeroKeyTyped(evt);
-            }
-        });
+        jLabel4.setText("jLabel4");
 
-        btnAceptarR.setText("Aceptar");
-        btnAceptarR.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAceptarRMouseClicked(evt);
-            }
-        });
-        btnAceptarR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarRActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("jLabel5");
 
-        btnCancelarR.setText("Cancelar");
-        btnCancelarR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarRActionPerformed(evt);
-            }
-        });
+        jLabel6.setText("jLabel6");
 
-        jLabel3.setText("Sexo");
+        jLabel7.setText("jLabel7");
 
-        btnGrupRadio.add(rbMujer);
-        rbMujer.setText("Mujer");
-        rbMujer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbMujerActionPerformed(evt);
-            }
-        });
+        jTextField3.setText("jTextField3");
 
-        btnGrupRadio.add(rbHombre);
-        rbHombre.setText("Hombre");
+        jTextField4.setText("jTextField4");
 
-        javax.swing.GroupLayout jpSexoLayout = new javax.swing.GroupLayout(jpSexo);
-        jpSexo.setLayout(jpSexoLayout);
-        jpSexoLayout.setHorizontalGroup(
-            jpSexoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpSexoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(41, 41, 41)
-                .addComponent(rbHombre)
-                .addGap(44, 44, 44)
-                .addComponent(rbMujer)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        jpSexoLayout.setVerticalGroup(
-            jpSexoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSexoLayout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(jpSexoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbMujer)
-                    .addComponent(rbHombre))
-                .addGap(23, 23, 23))
-            .addGroup(jpSexoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jTextField5.setText("jTextField5");
 
-        jLabel6.setText("Contraseña");
+        jTextField6.setText("jTextField6");
 
-        txtContrasena.setToolTipText("ingrese mas de 4 caracteres, puede llevar letras,\nletras en mayusculas y numeros");
-        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContrasenaActionPerformed(evt);
-            }
-        });
+        butAceptar.setText("Aceptar");
 
-        jLabel7.setText("Usuario");
+        jButton2.setText("jButton2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel3)
+                .addGap(29, 29, 29)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(75, 75, 75)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                                    .addComponent(txtApellido))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNumero)))
-                        .addContainerGap())
+                                    .addComponent(jTextField3)
+                                    .addComponent(jTextField4)
+                                    .addComponent(jTextField5)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(66, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(btnAceptarR)
-                                .addGap(39, 39, 39)
-                                .addComponent(btnCancelarR))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .addComponent(txtUsuario))))
-                        .addGap(0, 22, Short.MAX_VALUE))))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(texNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(jTextField2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(butAceptar)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(texNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(jpSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jLabel3))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarR)
-                    .addComponent(btnCancelarR))
-                .addGap(21, 21, 21))
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(butAceptar)
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rbMujerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMujerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbMujerActionPerformed
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
-           char c = evt.getKeyChar();
-        if ((c<'a' || c> 'z')&&(c<'A' || c>'Z') && (c != (char)KeyEvent.VK_BACK_SPACE)
-                && (c != (char)KeyEvent.VK_SPACE)){
-            evt.consume();
-             JOptionPane.showMessageDialog(null, "Solo se acepta texto",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if ((c<'a' || c> 'z')&&(c<'A' || c>'Z') && (c != (char)KeyEvent.VK_BACK_SPACE)
-                && (c != (char)KeyEvent.VK_SPACE)){
-            evt.consume();
-             JOptionPane.showMessageDialog(null, "Solo se acepta texto",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_txtApellidoKeyTyped
-
-    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if ((c<'0' || c> '9') && (c != (char)KeyEvent.VK_BACK_SPACE)){
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo se aceptan numeros",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-        } 
-        /*if (c != (char)KeyEvent.VK_BACK_SPACE){
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Campo Obligatorio",""
-                    ,JOptionPane.INFORMATION_MESSAGE);
-        }*/
-    }//GEN-LAST:event_txtNumeroKeyTyped
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void btnCancelarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnCancelarRActionPerformed
-
-    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContrasenaActionPerformed
-   //Datos datosUsuario = new Datos ("Dani", "Diaz", "hombre", "dani.diaz@uacm.edu.mx", 
-          //  "dani15","usuario1", 15474413);
-    private void btnAceptarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRActionPerformed
-        // TODO add your handling code here:
-      
-     
-    }//GEN-LAST:event_btnAceptarRActionPerformed
-
-    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
-        // TODO add your handling code here:
-        Datos d = new Datos("","","","","","",0);
-        if (d.esCorreo(txtCorreo.getText())) {
-        }else{
-              JOptionPane.showMessageDialog(null, "Correo invalido",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_txtCorreoFocusLost
-
-    private void btnAceptarRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarRMouseClicked
-        // TODO add your handling code here:
-        Datos d = new Datos("","","","","","",0);
-        if((txtNombre.getText().isEmpty())&&(txtApellido.getText().isEmpty())
-                && (txtCorreo.getText().isEmpty())
-             && (txtContrasena.getText().isEmpty())  
-             && (txtNumero.getText().isEmpty()) && ((rbHombre.isEnabled()) || (rbMujer.isEnabled()))){
-            JOptionPane.showMessageDialog(null, "campo obligatorio",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-        if(txtNombre.getText().isEmpty()){
-           JOptionPane.showMessageDialog(null, "campo obligatorio\nIngrese tu Nombre",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            if(txtApellido.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Campo obligatorio\nIngrese tu Apellido",
-                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                if(txtCorreo.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Campo obligatorio\nIngresa el correo",
-                        "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    if(txtContrasena.getText().isEmpty()){
-                        JOptionPane.showMessageDialog(null, "Campo obligatorio\nIngrese la Contraseña",
-                             "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-                    }else{
-                        if(txtNumero.getText().isEmpty()){
-                            JOptionPane.showMessageDialog(null, "Campo obligatorio \nIngrese el numero",
-                                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-                        }else{
-                            if((rbHombre.isEnabled()) || (rbMujer.isEnabled())){
-                                JOptionPane.showMessageDialog(null, "Campo obligatorio\nEliga el sexo",
-                                      "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        
-            
-        }
-        
-        
-    }//GEN-LAST:event_btnAceptarRMouseClicked
-
-    private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,9 +194,6 @@ public class Registro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -416,18 +201,11 @@ public class Registro extends javax.swing.JFrame {
                 new Registro().setVisible(true);
             }
         });
-        
-    }
-     public String UsuarioContra(){
-        return null;
-       
-       // return "\nusuario"+datosUsuario.getUsuario()+"\ncontraseña"+datosUsuario.getContrasena();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptarR;
-    private javax.swing.JButton btnCancelarR;
-    public static javax.swing.ButtonGroup btnGrupRadio;
+    public javax.swing.JButton butAceptar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -435,14 +213,13 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jpSexo;
-    private javax.swing.JRadioButton rbHombre;
-    private javax.swing.JRadioButton rbMujer;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtContrasena;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNumero;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    public javax.swing.JTextField texNombre;
     // End of variables declaration//GEN-END:variables
 }

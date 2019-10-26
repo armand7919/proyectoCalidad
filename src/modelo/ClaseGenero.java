@@ -9,15 +9,15 @@ package modelo;
  *
  * @author ArmandRC
  */
-public class claseGenero {
+public class ClaseGenero {
     
     private String codigo;
     private String genero;
     
-    public claseGenero () {
+    public ClaseGenero () {
     }
     
-    public claseGenero ( String codigo, String genero ){
+    public ClaseGenero ( String codigo, String genero ){
         this.codigo = codigo;
         this.genero = genero;
     }

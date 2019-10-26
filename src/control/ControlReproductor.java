@@ -22,8 +22,8 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import modelo.claseCancion;
-import modelo.claseGenero;
+import modelo.ClaseCancion;
+import modelo.ClaseGenero;
 
 
 /**
@@ -44,9 +44,9 @@ public class ControlReproductor implements MouseListener {
     formRoot mueveMouse = new formRoot();
     
     //lista de favorita
-    private ArrayList<claseCancion> favoritas = new ArrayList<>();
-    private claseCancion cCan;
-    private claseGenero cGen;
+    private ArrayList<ClaseCancion> favoritas = new ArrayList<>();
+    private ClaseCancion cCan;
+    private ClaseGenero cGen;
     private int codigo;
     private int botonPlay = 0; // variable para controlar la reproducción
     
@@ -64,10 +64,9 @@ public class ControlReproductor implements MouseListener {
         this.pri.butBuscar.addMouseListener (this);
         this.pri.butPausa.addMouseListener (this);
         this.pri.butPlay.addMouseListener (this);
-        //this.pri.butPreferencias.addMouseListener (this); // Se usará para modificar los datos del ususario.
+        this.pri.butPreferencias.addMouseListener (this);
         this.pri.butStop.addMouseListener (this);
         this.pri.buscaCancion.addMouseListener (this);
-        this.pri.configuracion.addMouseListener(this);
         
         //Evento para los temas de la lista favoritas
         this.pri.jList1.addMouseListener (this);
@@ -117,17 +116,13 @@ public class ControlReproductor implements MouseListener {
             d1.stop();
             //mensaje("Parar");
         }else if (e.getSource() == this.pri.buscaCancion){
-            d1.continuar();
             //mensaje("Formulario de busqueda");
         }else if (e.getSource() == this.pri.jList1){
             botonPlay=0;
             if (e.getClickCount() == 2){
                 prePlay();
             }   
-        }/*else if (e.getSource() == this.pri.configuracion){
-            conf.setViseble(true);
-            
-        }*/
+        }
     }
 
     @Override
@@ -141,7 +136,7 @@ public class ControlReproductor implements MouseListener {
     }
     
     private void prePlay (){
-        for(claseCancion items: favoritas){
+        for(ClaseCancion items: favoritas){
             if (items.getNombre().equals(this.pri.jList1.getSelectedValue())){
                 play(items);
             }
@@ -149,7 +144,7 @@ public class ControlReproductor implements MouseListener {
     }
 
     
-    private void play (claseCancion item){
+    private void play (ClaseCancion item){
       //  cCancion = item;
         pri.nombreCan.setText (item.getNombre());
         if (item.getNombre().endsWith(".mp3")){
@@ -189,8 +184,8 @@ public class ControlReproductor implements MouseListener {
             public void run() {
                 favoritas = new ArrayList<> ();
                 for ( File items : rootFiles){
-                    cGen = new claseGenero();
-                    cCan = new claseCancion();
+                    cGen = new ClaseGenero();
+                    cCan = new ClaseCancion();
                     //Obtener Genero
                     codigo = (int) Math.round(Math.random() * 9999);
                     // Lo siguiente sirve para crear el codigo como una cadena

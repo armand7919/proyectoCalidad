@@ -9,7 +9,7 @@ package modelo;
  *
  * @author ArmandRC
  */
-public class claseCancion {
+public class ClaseCancion {
     
     private String codigo;
     private String nombre;
@@ -17,13 +17,13 @@ public class claseCancion {
     private byte[] musica;
     
     //Relación entre musica y claseGenero
-    private claseGenero genero;
+    private ClaseGenero genero;
 
-    public claseCancion() {
+    public ClaseCancion() {
     }
 
-    public claseCancion(String codigo, String nombre,
-            String duracion, byte[] musica, claseGenero genero) {
+    public ClaseCancion(String codigo, String nombre,
+            String duracion, byte[] musica, ClaseGenero genero) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.duracion = duracion;
@@ -31,11 +31,11 @@ public class claseCancion {
         this.genero = genero;
     }
 
-    public claseGenero getGenero() {
+    public ClaseGenero getGenero() {
         return genero;
     }
 
-    public void setGenero(claseGenero genero) {
+    public void setGenero(ClaseGenero genero) {
         this.genero = genero;
     }
 

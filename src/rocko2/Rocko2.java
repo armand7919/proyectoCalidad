@@ -5,11 +5,13 @@
  */
 package rocko2;
 
-import Ventanas.Perfil;
 import Ventanas.Primaria;
+import Ventanas.Registro;
 import Ventanas.Secundaria;
 import control.ControlLista;
+import control.ControlRegistro;
 import control.ControlReproductor;
+import modelo.Usuario;
 
 /**
  *
@@ -28,8 +30,9 @@ public class Rocko2 {
         ControlReproductor cR = new ControlReproductor(pri,sec);
         ControlLista cL = new ControlLista(sec);
         
-        Perfil p = new Perfil();
-        p.setVisible(true);
+        Registro registro = new Registro();
+        
+        ControlRegistro iniciaRegistro = new ControlRegistro(registro);
         
     }
     
