@@ -5,6 +5,7 @@
  */
 package rocko2;
 
+import Ventanas.Login;
 import Ventanas.Primaria;
 import Ventanas.Registro;
 import Ventanas.Secundaria;
@@ -24,15 +25,18 @@ public class Rocko2 {
      */
     public static void main(String[] args) {
         
-        Primaria pri = new Primaria();
+      /*  Primaria pri = new Primaria();
         Secundaria sec = new Secundaria();
          
         ControlReproductor cR = new ControlReproductor(pri,sec);
         ControlLista cL = new ControlLista(sec);
         
-        Registro registro = new Registro();
+       /* Registro registro = new Registro();
         
-        ControlRegistro iniciaRegistro = new ControlRegistro(registro);
+        ControlRegistro iniciaRegistro = new ControlRegistro(registro);*/
+      
+      Login login=new Login();
+      login.setVisible(true);
         
     }
     

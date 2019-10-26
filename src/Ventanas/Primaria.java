@@ -46,6 +46,8 @@ public class Primaria extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         nombreCan = new javax.swing.JLabel();
         buscaCancion = new javax.swing.JTextField();
+        butCerrar = new javax.swing.JButton();
+        butPerfil = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +92,10 @@ public class Primaria extends javax.swing.JFrame {
             }
         });
 
+        butCerrar.setText("Cerrar cuenta");
+
+        butPerfil.setText("Modificar Perfil");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +121,11 @@ public class Primaria extends javax.swing.JFrame {
                                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nombreCan, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)))
+                                .addGap(1, 1, 1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(butCerrar)
+                                .addGap(53, 53, 53)
+                                .addComponent(butPerfil)))
                         .addGap(48, 48, 48))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
@@ -137,14 +147,14 @@ public class Primaria extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(etiquetaUsuario)
-                .addGap(137, 137, 137))
+                .addGap(164, 164, 164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(etiquetaUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butBuscar)
                     .addComponent(buscaCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -170,6 +180,12 @@ public class Primaria extends javax.swing.JFrame {
                     .addComponent(volumen)
                     .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(butCerrar)
+                    .addComponent(butPerfil))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,7 +237,9 @@ public class Primaria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField buscaCancion;
     public javax.swing.JButton butBuscar;
+    public javax.swing.JButton butCerrar;
     public javax.swing.JButton butPausa;
+    public javax.swing.JButton butPerfil;
     public javax.swing.JButton butPlay;
     public javax.swing.JButton butPreferencias;
     public javax.swing.JButton butStop;

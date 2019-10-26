@@ -38,7 +38,8 @@ public class ControlRegistro implements MouseListener {
     } 
     
     public void iniciar(){
-        this.registro.butAceptar.addMouseListener (this);             
+        this.registro.butAceptar.addMouseListener (this);
+        this.registro.butCancelar.addMouseListener (this);
         //se inicializa la ventana
         this.registro.setSize (605, 700);
         this.registro.setVisible (true);
@@ -90,6 +91,9 @@ public class ControlRegistro implements MouseListener {
                  
                  // una ventana auxiliar de registro fallido
              }
+        }else if (e.getSource() == this.registro.butCancelar){
+            registro.removeAll();
+            registro.setVisible(false);
         }
        
     }

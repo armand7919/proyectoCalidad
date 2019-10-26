@@ -43,7 +43,7 @@ public class Registro extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         butAceptar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        butCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +79,7 @@ public class Registro extends javax.swing.JFrame {
 
         butAceptar.setText("Aceptar");
 
-        jButton2.setText("jButton2");
+        butCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +123,7 @@ public class Registro extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(butAceptar)
                         .addGap(57, 57, 57)
-                        .addComponent(jButton2)
+                        .addComponent(butCancelar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -161,7 +161,7 @@ public class Registro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butAceptar)
-                    .addComponent(jButton2))
+                    .addComponent(butCancelar))
                 .addContainerGap())
         );
 
@@ -205,7 +205,7 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton butAceptar;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton butCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

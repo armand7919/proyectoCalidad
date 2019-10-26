@@ -15,7 +15,10 @@ package control;
 import TelematicoTools.FormMouse.formRoot;
 import TelematicoTools.Platillos.DiscoAux;
 import TelematicoTools.Platillos.DiscoOne;
+import Ventanas.Login;
+import Ventanas.Perfil;
 import Ventanas.Primaria;
+import Ventanas.Registro;
 import Ventanas.Secundaria;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -67,12 +70,13 @@ public class ControlReproductor implements MouseListener {
         this.pri.butPreferencias.addMouseListener (this);
         this.pri.butStop.addMouseListener (this);
         this.pri.buscaCancion.addMouseListener (this);
-        
+        this.pri.butCerrar.addMouseListener(this);
+        this.pri.butPerfil.addMouseListener(this);
         //Evento para los temas de la lista favoritas
         this.pri.jList1.addMouseListener (this);
         
         //se inicializa la ventana
-        this.pri.setSize (605, 700);
+        this.pri.setSize (650, 700);
         this.pri.setVisible (true);
         mueveMouse.ControlProgress (this.pri.jProgressBar1,
                 this.pri.jSlider1, d1);
@@ -122,6 +126,17 @@ public class ControlReproductor implements MouseListener {
             if (e.getClickCount() == 2){
                 prePlay();
             }   
+        }else if (e.getSource() == this.pri.butCerrar){
+           /* this.pri.removeAll();
+            this.pri.setVisible(false);*/
+           this.pri.dispose();
+            Login login=new Login();
+            
+            login.setVisible(true);
+        }else if (e.getSource() == this.pri.butPerfil){
+            Perfil perfil=new Perfil();
+            perfil.setVisible(true);
+            //introducir objeto clase de Perfil
         }
     }
 
@@ -132,7 +147,7 @@ public class ControlReproductor implements MouseListener {
 
     @Override
     public void mouseExited (MouseEvent e) {
-        
+
     }
     
     private void prePlay (){
