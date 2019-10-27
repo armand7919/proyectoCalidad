@@ -120,7 +120,9 @@ public class Login extends javax.swing.JFrame {
     private void butAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butAceptarActionPerformed
             String pas = new String (jPasswordField1.getPassword());
             String usu = new String (jTextField1.getText());
-        
+            int id = 1;
+            //Se requiere una consulta de la base de datos para comparar en 
+            //se debe pasar como parametro el id del usuario al control de reproductor
             if(usu.equals("hola") && pas.equals("123") ){
                 
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
@@ -128,7 +130,7 @@ public class Login extends javax.swing.JFrame {
                 Primaria pri = new Primaria();
                 Secundaria sec = new Secundaria();
          
-                ControlReproductor cR = new ControlReproductor(pri,sec);
+                ControlReproductor cR = new ControlReproductor(pri,sec,id,usu);
                 //ControlLista cL = new ControlLista(sec);
             }else{
             

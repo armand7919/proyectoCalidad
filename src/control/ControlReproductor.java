@@ -20,11 +20,13 @@ import Ventanas.Perfil;
 import Ventanas.Primaria;
 import Ventanas.Registro;
 import Ventanas.Secundaria;
+import controlBaseDatos.LikeDAO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import modelo.ClaseCancion;
 import modelo.ClaseGenero;
 
@@ -35,7 +37,9 @@ import modelo.ClaseGenero;
  */
 public class ControlReproductor implements MouseListener {
    
-     
+    int idUsuario;
+    int idCancion;
+    String nombreUsuario;
     Primaria pri = new Primaria();
     Secundaria sec = new Secundaria();
     
@@ -56,25 +60,29 @@ public class ControlReproductor implements MouseListener {
     DefaultListModel Flist = null;
     
     
-    public ControlReproductor(Primaria pri, Secundaria sec){
+    public ControlReproductor(Primaria pri, Secundaria sec,
+            int idUser, String nombreUsuario){
         this.pri = pri;
         this.sec = sec;
+        this.idUsuario = idUser;
+        this.nombreUsuario = nombreUsuario;
         inicia();
     }
     
     private void inicia (){
         //Eventos de los botones
-        this.pri.butBuscar.addMouseListener (this);
+        this.pri.butSugerencias.addMouseListener (this);
         this.pri.butPausa.addMouseListener (this);
         this.pri.butPlay.addMouseListener (this);
         this.pri.butPreferencias.addMouseListener (this);
         this.pri.butStop.addMouseListener (this);
-        this.pri.buscaCancion.addMouseListener (this);
+        this.pri.butSugerencias.addMouseListener (this);
+        this.pri.butLike.addMouseListener(this);
         this.pri.butCerrar.addMouseListener(this);
         this.pri.butPerfil.addMouseListener(this);
         //Evento para los temas de la lista favoritas
         this.pri.jList1.addMouseListener (this);
-        
+        this.pri.laUsuario.setText(nombreUsuario);
         //se inicializa la ventana
         this.pri.setSize (650, 700);
         this.pri.setVisible (true);
@@ -97,7 +105,7 @@ public class ControlReproductor implements MouseListener {
     public void mouseReleased (MouseEvent e) {
         
                 
-        if (e.getSource() == this.pri.butBuscar){
+        if (e.getSource() == this.pri.butSugerencias){
              
             
         }else if (e.getSource() == this.pri.butPausa){
@@ -106,7 +114,7 @@ public class ControlReproductor implements MouseListener {
         }else if (e.getSource() == this.pri.butPlay){
             switch (botonPlay){
                 case 0:
-                    prePlay();
+                    idCancion = prePlay();
                 break;
                 case 1:
                     d1.continuar();
@@ -119,16 +127,25 @@ public class ControlReproductor implements MouseListener {
         }else  if (e.getSource() == this.pri.butStop){
             d1.stop();
             //mensaje("Parar");
-        }else if (e.getSource() == this.pri.buscaCancion){
-            //mensaje("Formulario de busqueda");
+        }else if (e.getSource() == this.pri.butLike){
+            
+            if(idCancion == 0){
+                JOptionPane.showMessageDialog(this.pri, "Intenta nuevamente");
+            }else{
+                LikeDAO like=new LikeDAO();
+                like.darLike(idUsuario, idCancion );
+                JOptionPane.showMessageDialog(this.pri, "Diste ¡¡¡Like!!!");
+            }
+
         }else if (e.getSource() == this.pri.jList1){
             botonPlay=0;
             if (e.getClickCount() == 2){
-                prePlay();
+                idCancion=prePlay();
             }   
         }else if (e.getSource() == this.pri.butCerrar){
-           /* this.pri.removeAll();
-            this.pri.setVisible(false);*/
+           this.pri.removeAll();
+           this.d1.stop();
+           /* this.pri.setVisible(false);*/
            this.pri.dispose();
             Login login=new Login();
             
@@ -136,6 +153,7 @@ public class ControlReproductor implements MouseListener {
         }else if (e.getSource() == this.pri.butPerfil){
             Perfil perfil=new Perfil();
             perfil.setVisible(true);
+            
             //introducir objeto clase de Perfil
         }
     }
@@ -150,12 +168,18 @@ public class ControlReproductor implements MouseListener {
 
     }
     
-    private void prePlay (){
+    private int prePlay (){
+        int id = 0;
+        String idCan;
+        
         for(ClaseCancion items: favoritas){
             if (items.getNombre().equals(this.pri.jList1.getSelectedValue())){
                 play(items);
+                id=Integer.parseInt(items.getCodigo());
+                System.out.println(id);
             }
         }
+        return id;
     }
 
     

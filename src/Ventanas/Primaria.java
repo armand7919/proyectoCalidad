@@ -32,8 +32,8 @@ public class Primaria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        etiquetaUsuario = new javax.swing.JLabel();
-        butBuscar = new javax.swing.JButton();
+        laUsuario = new javax.swing.JLabel();
+        butSugerencias = new javax.swing.JButton();
         butPreferencias = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         butStop = new javax.swing.JButton();
@@ -45,16 +45,16 @@ public class Primaria extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         nombreCan = new javax.swing.JLabel();
-        buscaCancion = new javax.swing.JTextField();
         butCerrar = new javax.swing.JButton();
         butPerfil = new javax.swing.JButton();
+        butLike = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        etiquetaUsuario.setText("Usuario");
+        laUsuario.setText("Usuario");
 
-        butBuscar.setText("Buscar");
-        butBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        butSugerencias.setText("Sugerencias");
+        butSugerencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         butPreferencias.setText("Preferencias");
         butPreferencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -86,31 +86,22 @@ public class Primaria extends javax.swing.JFrame {
 
         nombreCan.setText("                                                 Titulo");
 
-        buscaCancion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscaCancionActionPerformed(evt);
-            }
-        });
-
         butCerrar.setText("Cerrar cuenta");
 
         butPerfil.setText("Modificar Perfil");
+
+        butLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/like.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(butBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(buscaCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addComponent(butPreferencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(butPreferencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(butSugerencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
@@ -128,7 +119,9 @@ public class Primaria extends javax.swing.JFrame {
                                 .addComponent(butPerfil)))
                         .addGap(48, 48, 48))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
+                        .addGap(13, 13, 13)
+                        .addComponent(butLike)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -146,19 +139,17 @@ public class Primaria extends javax.swing.JFrame {
                                 .addGap(75, 75, 75))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(etiquetaUsuario)
+                .addComponent(laUsuario)
                 .addGap(164, 164, 164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(etiquetaUsuario)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(butBuscar)
-                    .addComponent(buscaCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addComponent(laUsuario)
+                .addGap(47, 47, 47)
+                .addComponent(butSugerencias)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butPreferencias)
                     .addComponent(nombreCan))
@@ -175,7 +166,7 @@ public class Primaria extends javax.swing.JFrame {
                                 .addComponent(butPlay)
                                 .addComponent(butPausa, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(butStop))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(volumen)
                     .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,6 +176,8 @@ public class Primaria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butCerrar)
                     .addComponent(butPerfil))
+                .addGap(202, 202, 202)
+                .addComponent(butLike)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -194,10 +187,6 @@ public class Primaria extends javax.swing.JFrame {
     private void butPreferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butPreferenciasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_butPreferenciasActionPerformed
-
-    private void buscaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaCancionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscaCancionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,20 +224,20 @@ public class Primaria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField buscaCancion;
-    public javax.swing.JButton butBuscar;
     public javax.swing.JButton butCerrar;
+    public javax.swing.JButton butLike;
     public javax.swing.JButton butPausa;
     public javax.swing.JButton butPerfil;
     public javax.swing.JButton butPlay;
     public javax.swing.JButton butPreferencias;
     public javax.swing.JButton butStop;
-    private javax.swing.JLabel etiquetaUsuario;
+    public javax.swing.JButton butSugerencias;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JList<String> jList1;
     public javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JSlider jSlider1;
+    public javax.swing.JLabel laUsuario;
     public javax.swing.JLabel nombreCan;
     private javax.swing.JLabel volumen;
     // End of variables declaration//GEN-END:variables
