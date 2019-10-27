@@ -6,6 +6,7 @@
 package control;
 
 import Ventanas.Registro;
+import controlBaseDatos.UsuarioDAO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import modelo.Usuario;
@@ -17,15 +18,7 @@ import modelo.Usuario;
 public class ControlRegistro implements MouseListener {
 
     int verificador;
-    private Usuario usuarioRegistro;
-
-    public Usuario getUsuarioRegistro() {
-        return usuarioRegistro;
-    }
-
-    public void setUsuarioRegistro(Usuario usuarioRegistro) {
-        this.usuarioRegistro = usuarioRegistro;
-    }
+    Usuario usuarioRegistro;
     Registro registro=new Registro();
     
 
@@ -47,16 +40,26 @@ public class ControlRegistro implements MouseListener {
         
     }
     
-    public void registrar(){
-        int uno = 1;//<-----sólo prueba
-        Usuario usuarioBaseDatos; //variable de clase usuarioBaseDatos que aun no se ha hecho
+    public void registrar(Registro registro){
+        Usuario user=new Usuario();
+              
+        UsuarioDAO usuarioDAO=new UsuarioDAO(); //variable de clase usuarioBaseDatos que aun no se ha hecho
         
-        if(uno == 1){
-             System.out.println("fase 4 registra ok");
+        user.setNombre(registro.texNombre.getText()); //ejemplo de como meter los datos del usuario
+        user.setApellido(registro.textApellido.getText());
+        user.setSexo("Mujer");
+        user.setCorreo("Muejer@hot.com");
+        user.setUsuario("lopez78");
+        user.setContrasena("123");
+        user.setTelefono(58591623);
+           
+        usuarioDAO.crear(user);
+        
+        System.out.println("fase 4 registra ok");
          //   usuarioRegistro.setNombre(registro.texNombre.getText());
             //se pasan todos los parametros del registro
          //   usuarioBaseDatos=usuarioRegistro;//una vez lleno el usuario que regresaras lo pasas a el usuarioBaseDatos
-        }
+        
     }
     
     public int verificaCampos(){
@@ -84,16 +87,15 @@ public class ControlRegistro implements MouseListener {
         if (e.getSource() == this.registro.butAceptar){
              verificador = verificaCampos(); // llamas ala fucion para verificar los campos 
              if(verificador == 1){
-                  System.out.println("fase 3 mouse");
-                 registrar();
+                System.out.println("fase 3 mouse");
+                registrar(this.registro);
                 
              }else{
                  
                  // una ventana auxiliar de registro fallido
              }
         }else if (e.getSource() == this.registro.butCancelar){
-            registro.removeAll();
-            registro.setVisible(false);
+            registro.dispose();
         }
        
     }
