@@ -11,14 +11,15 @@ package modelo;
  */
 public class Usuario {
     
-     
+    private int id;
+    private int telefono; 
     private String nombre;
     private String apellido;
     private String sexo;
     private String correo;
     private String usuario;
     private String contrasena;
-    private int telefono;
+    
     
     public Usuario(){
         
@@ -31,7 +32,7 @@ public class Usuario {
     
     public Usuario(String nombre, String apellido, String sexo,
             String correo, String usuario, String contrasena,
-            int telefono) {
+            int telefono, int id) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.sexo = sexo;
@@ -39,6 +40,15 @@ public class Usuario {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.telefono = telefono;
+        this.id=id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 

@@ -6,9 +6,10 @@
 package controlBaseDatos;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Usuario;
 
 /**
@@ -24,7 +25,7 @@ public class UsuarioDAO {
     
  public boolean crear(Usuario user){
      if(c==null){
-         c.conectar();
+        // c.conectar();
      }//******************************
      try {
          String sql="INSERT INTO USUARIO(NOMBRE_USUARIO,APELLIDO_USUARIO, SEXO, CORREO_E, USER_NAME, PASSWORD, TELEFONO)VALUES(?,?,?,?,?,?,?);";
@@ -49,12 +50,107 @@ public class UsuarioDAO {
          return false;
      }
  }
- /* prueba de inser
+ 
+  public List<Usuario> listaUsuarios(){
+      Usuario usuario= null;
+      List<Usuario> lista= new ArrayList<Usuario>();
+      if(c==null){
+       //  c.conectar();
+      }
+      try {
+         String sql="SELECT ID_USUARIO,NOMBRE_USUARIO,APELLIDO_USUARIO,SEXO,CORREO_E,USER_NAME,PASSWORD,TELEFONO FROM usuario;";
+         PreparedStatement ps=c.conectar().prepareStatement(sql);
+         ResultSet rs=ps.executeQuery();
+
+         while(rs.next()){
+             usuario=new Usuario();
+             usuario.setId(rs.getInt("ID_USUARIO"));
+             usuario.setNombre(rs.getString("NOMBRE_USUARIO"));
+             usuario.setApellido(rs.getString("APELLIDO_USUARIO"));
+             usuario.setSexo(rs.getString("SEXO"));
+             usuario.setCorreo(rs.getString("CORREO_E"));
+             usuario.setUsuario(rs.getString("USER_NAME"));
+             usuario.setContrasena(rs.getString("PASSWORD"));
+             usuario.setTelefono(rs.getInt("TELEFONO"));
+             lista.add(usuario);
+        }
+         
+         rs.close();
+         rs=null;
+         ps.close();
+         ps=null;
+         c.desconectar();
+         System.out.println("Consulta exitosa");
+         return lista;
+         
+      } catch (SQLException ex) {
+         System.out.println("Consulta fallida");
+         c.desconectar();
+         return lista;
+      }
+ }
+  
+  public int cambiaParametro(String user, String psw, String newUser){
+      int verificador=0;
+      Usuario usuario=null;
+      List<Usuario> lista= new ArrayList<Usuario>();
+      UsuarioDAO userDAO=new UsuarioDAO();
+      lista=userDAO.listaUsuarios();
+      
+      for (int i=0; i<lista.size(); i++){
+          usuario=lista.get(i);
+          if(usuario.getNombre().equals(user) &&
+                  usuario.getContrasena().equals(psw)){
+                   try {
+                        String sql="UPDATE usuario SET USER_NAME = ? WHERE ID_USUARIO =?;";
+                        PreparedStatement ps=c.conectar().prepareStatement(sql);
+                        ps.setString(1, newUser);
+                        ps.setInt(2, usuario.getId());
+                        ps.executeUpdate();
+                        ps.close();
+                        ps=null;
+                        c.desconectar();
+                        System.out.println("Usuario actualizado");
+                        verificador=1;
+
+                    } catch (SQLException ex) {
+                        System.out.println("No se logro actualizar usuario");
+                        c.desconectar();
+                        verificador=0;
+                    }
+              
+          }
+      }
+
+         return verificador;   
+  }
+  
+    public int consultaLogin(String user, String psw ){
+      int verificador=0;
+      Usuario usuario=null;
+      List<Usuario> lista= new ArrayList<Usuario>();
+      UsuarioDAO userDAO=new UsuarioDAO();
+      lista=userDAO.listaUsuarios();
+      
+      for (int i=0; i<lista.size(); i++){
+          usuario=lista.get(i);
+          if(usuario.getNombre().equals(user) &&
+                  usuario.getContrasena().equals(psw)){
+              verificador=1;
+          }
+      }
+
+         return verificador;   
+  }
+  
+     //   consultaLogin();
+     //  cambiaParametro();
+ /* prueba de inser*/
     public static void main(String[] args){
-        Usuario usuario=new Usuario();
+        //Usuario usuario=new Usuario();
         UsuarioDAO userDAO=new UsuarioDAO();
-        
-        usuario.setNombre("Alma");
+        int consultalog;
+       /* usuario.setNombre("Alma");
         usuario.setApellido("Robles");
         usuario.setSexo("Mujer");
         usuario.setCorreo("Muejer@hot.com");
@@ -62,8 +158,11 @@ public class UsuarioDAO {
         usuario.setContrasena("123");
         usuario.setTelefono(58591623);
         
-        userDAO.crear(usuario);
-      
+        userDAO.crear(usuario);////
+        userDAO.listaUsuarios();*/
+       
+       consultalog=userDAO.cambiaParametro("paco", "123","poncho");
+       System.out.println(consultalog);
     }
- */
+ /**/
 }
