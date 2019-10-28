@@ -18,7 +18,6 @@ import TelematicoTools.Platillos.DiscoOne;
 import Ventanas.Login;
 import Ventanas.Perfil;
 import Ventanas.Primaria;
-import Ventanas.Registro;
 import Ventanas.Secundaria;
 import controlBaseDatos.LikeDAO;
 import java.awt.event.MouseEvent;
@@ -61,7 +60,7 @@ public class ControlReproductor implements MouseListener {
     
     
     public ControlReproductor(Primaria pri, Secundaria sec,
-            int idUser, String nombreUsuario){
+        int idUser, String nombreUsuario){
         this.pri = pri;
         this.sec = sec;
         this.idUsuario = idUser;
@@ -93,7 +92,7 @@ public class ControlReproductor implements MouseListener {
 
     @Override
     public void mouseClicked (MouseEvent e) {
-        
+     
     }
 
     @Override
@@ -106,7 +105,7 @@ public class ControlReproductor implements MouseListener {
         
                 
         if (e.getSource() == this.pri.butSugerencias){
-             
+            getListaCanciones( getRutaCanciones(new File ("C:\\Users\\ArmandRC\\Documents\\NetBeansProjects\\Rocko2\\musPrefere")));
             
         }else if (e.getSource() == this.pri.butPausa){
             botonPlay = 1;

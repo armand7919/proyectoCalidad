@@ -28,7 +28,8 @@ public class ControlRegistro implements MouseListener {
     
     public ControlRegistro(Registro registro) {
         this.registro = registro;
-        iniciar();//se puede sesabilitar para hacerlo en el main, sólo es para prueba
+        iniciar();
+        //se puede sesabilitar para hacerlo en el main, sólo es para prueba
     } 
     
     public void iniciar(){
@@ -64,13 +65,15 @@ public class ControlRegistro implements MouseListener {
         System.out.println("fase 4 registra ok"); //<-----verifica el nivel en que se encuentra 
          //   usuarioRegistro.setNombre(registro.texNombre.getText());
             //se pasan todos los parametros del registro
-         //   usuarioBaseDatos=usuarioRegistro;//una vez lleno el usuario que regresaras lo pasas a el usuarioBaseDatos
+         //   usuarioBaseDatos=usuarioRegistro;//una vez lleno el usuario 
+         //que regresaras lo pasas a el usuarioBaseDatos
         
     }
     
     public int verificaCampos(Registro registro){
         int verificador=1; //ahí que cambiar por cero, el uno sólo es para la prueba
-        //usa la variable registro para que hacer las verificaciones y una vez que este todo correcto asegna 1 a la variable verificador
+        /*usa la variable registro para que hacer las verificaciones y
+        una vez que este todo correcto asegna 1 a la variable verificador*/
         if(registro.rButHombre.isEnabled() && this.registro.rButMujer.isEnabled()){
             JOptionPane.showMessageDialog(this.registro, "Elija tipo de género");
             verificador=0;
@@ -96,7 +99,8 @@ public class ControlRegistro implements MouseListener {
         
         if (e.getSource() == this.registro.butAceptar){
 
-             verificador = verificaCampos(this.registro); // llamas ala fucion para verificar los campos 
+             verificador = verificaCampos(this.registro); 
+             // llamas a la fucion para verificar los campos 
              if(verificador == 1){
                 System.out.println("fase 3 mouse");
                 registrar(this.registro);

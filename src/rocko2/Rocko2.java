@@ -6,13 +6,7 @@
 package rocko2;
 
 import Ventanas.Login;
-import Ventanas.Primaria;
-import Ventanas.Registro;
-import Ventanas.Secundaria;
-import control.ControlLista;
-import control.ControlRegistro;
-import control.ControlReproductor;
-import modelo.Usuario;
+
 
 /**
  *

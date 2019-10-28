@@ -57,7 +57,7 @@ public class UsuarioDAO {
       if(c==null){
        //  c.conectar();
       }
-      try {
+      try {//se justifica la siguiente cadena seguida porque en ocaciones no pasa bienel comando sql
          String sql="SELECT ID_USUARIO,NOMBRE_USUARIO,APELLIDO_USUARIO,SEXO,CORREO_E,USER_NAME,PASSWORD,TELEFONO FROM usuario;";
          PreparedStatement ps=c.conectar().prepareStatement(sql);
          ResultSet rs=ps.executeQuery();
@@ -145,7 +145,7 @@ public class UsuarioDAO {
   
      //   consultaLogin();
      //  cambiaParametro();
- /* prueba de inser*/
+ /* prueba de inser
     public static void main(String[] args){
         //Usuario usuario=new Usuario();
         UsuarioDAO userDAO=new UsuarioDAO();
@@ -159,10 +159,10 @@ public class UsuarioDAO {
         usuario.setTelefono(58591623);
         
         userDAO.crear(usuario);////
-        userDAO.listaUsuarios();*/
+        userDAO.listaUsuarios();
        
        consultalog=userDAO.cambiaParametro("paco", "123","poncho");
        System.out.println(consultalog);
     }
- /**/
+ */
 }

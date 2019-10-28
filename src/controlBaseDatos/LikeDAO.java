@@ -42,12 +42,12 @@ public class LikeDAO {
             return false;
         }
     }
-    
+    /*
         public static void main(String[] args){
  
         LikeDAO like=new LikeDAO();
         
         like.darLike(1, 1);
       
-    }
+    }*/
 }

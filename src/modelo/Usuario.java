@@ -107,7 +107,5 @@ public class Usuario {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
-
     
 }
