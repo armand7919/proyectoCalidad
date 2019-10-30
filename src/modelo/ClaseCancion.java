@@ -10,7 +10,7 @@ package modelo;
  * @author ArmandRC
  */
 public class ClaseCancion {
-    
+   
     private String codigo;
     private String nombre;
     private String duracion;

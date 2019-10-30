@@ -7,6 +7,7 @@ package Ventanas;
 
 import control.ControlRegistro;
 import control.ControlReproductor;
+import controlBaseDatos.UsuarioDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,11 +34,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         butAceptar = new javax.swing.JButton();
         butCancelar = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPssw = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,8 +87,8 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addGap(41, 41, 41)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                        .addComponent(jPasswordField1))))))
+                                        .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                        .addComponent(txtPssw))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(126, 126, 126)
                         .addComponent(jLabel3)))
@@ -99,15 +100,15 @@ public class Login extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPssw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(butAceptar)
                     .addComponent(butCancelar))
                 .addContainerGap(40, Short.MAX_VALUE))
@@ -117,19 +118,20 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butAceptarActionPerformed
-            String pas = new String (jPasswordField1.getPassword());
-            String usu = new String (jTextField1.getText());
-            int id = 1;
-            //Se requiere una consulta de la base de datos para comparar en 
-            //se debe pasar como parametro el id del usuario al control de reproductor
-            if(usu.equals("hola") && pas.equals("123") ){
+        int identificador;
+        UsuarioDAO usuarioDAO=new UsuarioDAO();   
+        String pas = new String (txtPssw.getPassword());
+        String usu = new String (txtUsuario.getText());
+        identificador=usuarioDAO.consultaLogin(usu, pas);
+
+            if(identificador == 1 ){
                 
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
                 this.dispose();
                 Primaria pri = new Primaria();
                 Secundaria sec = new Secundaria();
          
-                ControlReproductor cR = new ControlReproductor(pri,sec,id,usu);
+                ControlReproductor cR = new ControlReproductor(pri,sec,pas,usu);
                 //ControlLista cL = new ControlLista(sec);
             }else{
             
@@ -189,7 +191,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtPssw;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

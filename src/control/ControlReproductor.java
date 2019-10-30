@@ -36,8 +36,9 @@ import modelo.ClaseGenero;
  */
 public class ControlReproductor implements MouseListener {
    
-    int idUsuario;
+    
     int idCancion;
+    String idUsuario;
     String nombreUsuario;
     Primaria pri = new Primaria();
     Secundaria sec = new Secundaria();
@@ -60,7 +61,7 @@ public class ControlReproductor implements MouseListener {
     
     
     public ControlReproductor(Primaria pri, Secundaria sec,
-        int idUser, String nombreUsuario){
+        String idUser, String nombreUsuario){
         this.pri = pri;
         this.sec = sec;
         this.idUsuario = idUser;

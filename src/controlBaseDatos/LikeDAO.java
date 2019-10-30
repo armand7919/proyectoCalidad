@@ -20,14 +20,14 @@ public class LikeDAO {
         c=new Conexion();
     }
     
-    public boolean darLike(int idUser, int idSong){
+    public boolean darLike(String idUser, int idSong){
         if(c==null){
          c.conectar();
         }//******************************
         try {
             String sql="INSERT INTO LIKED_SONGS(ID_USUARIO, ID_CANCION) VALUES(?, ?);";
             PreparedStatement ps=c.conectar().prepareStatement(sql);
-            ps.setInt(1, idUser);
+            ps.setString(1, idUser);
             ps.setInt(2, idSong);
             ps.execute();
             ps.close();

@@ -134,7 +134,7 @@ public class UsuarioDAO {
       
       for (int i=0; i<lista.size(); i++){
           usuario=lista.get(i);
-          if(usuario.getNombre().equals(user) &&
+          if(usuario.getUsuario().equals(user) &&
                   usuario.getContrasena().equals(psw)){
               verificador=1;
           }
