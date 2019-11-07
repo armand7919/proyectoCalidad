@@ -20,6 +20,7 @@ import Ventanas.Perfil;
 import Ventanas.Primaria;
 import Ventanas.Secundaria;
 import controlBaseDatos.LikeDAO;
+import controlBaseDatos.MusicaDAO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -106,7 +107,11 @@ public class ControlReproductor implements MouseListener {
         
                 
         if (e.getSource() == this.pri.butSugerencias){
-            getListaCanciones( getRutaCanciones(new File ("C:\\Users\\ArmandRC\\Documents\\NetBeansProjects\\Rocko2\\musPrefere")));
+            ClaseCancion cancion=null;
+            MusicaDAO musica=new MusicaDAO();
+            cancion=musica.lCacniones();
+         //   System.out.println(cancion.getAlbum());
+            getListaCanciones( getRutaCanciones(new File (cancion.getAlbum())));
             
         }else if (e.getSource() == this.pri.butPausa){
             botonPlay = 1;
@@ -121,8 +126,9 @@ public class ControlReproductor implements MouseListener {
                 break;      
             }
         }else  if (e.getSource() == this.pri.butPreferencias){
-            getListaCanciones( getRutaCanciones(new File ("C:\\Users\\"
-                    + "ArmandRC\\Documents\\NetBeansProjects\\Rocko2\\mus")));
+            MusicaDAO cancion=new MusicaDAO();
+            ClaseCancion musica=cancion.lCacniones();
+            getListaCanciones( getRutaCanciones(new File(musica.getAlbum())));
             //mensaje("mis canciones");
         }else  if (e.getSource() == this.pri.butStop){
             d1.stop();
@@ -173,10 +179,10 @@ public class ControlReproductor implements MouseListener {
         String idCan;
         
         for(ClaseCancion items: favoritas){
-            if (items.getNombre().equals(this.pri.jList1.getSelectedValue())){
+            if (items.getTitulo().equals(this.pri.jList1.getSelectedValue())){
                 play(items);
-                id=Integer.parseInt(items.getCodigo());
-                System.out.println(id);
+               id=1;
+            //    System.out.println(id);
             }
         }
         return id;
@@ -185,11 +191,11 @@ public class ControlReproductor implements MouseListener {
     
     private void play (ClaseCancion item){
       //  cCancion = item;
-        pri.nombreCan.setText (item.getNombre());
-        if (item.getNombre().endsWith(".mp3")){
+        pri.nombreCan.setText (item.getTitulo());
+        if (item.getTitulo().endsWith(".mp3")){
             d1.stop();
             d1.PlayMP3(item.getMusica());
-        }else if (item.getNombre().endsWith(".wav")){
+        }else if (item.getTitulo().endsWith(".wav")){
             d1.stop();
             d1.PlayWAV(item.getMusica());
         }
@@ -223,23 +229,23 @@ public class ControlReproductor implements MouseListener {
             public void run() {
                 favoritas = new ArrayList<> ();
                 for ( File items : rootFiles){
-                    cGen = new ClaseGenero();
+                   // cGen = new ClaseGenero();
                     cCan = new ClaseCancion();
                     //Obtener Genero
                     codigo = (int) Math.round(Math.random() * 9999);
                     // Lo siguiente sirve para crear el codigo como una cadena
-                    cGen.setCodigo(codigo + "");
-                    cGen.setGenero(dAux.getMetaDatos(items.toString()));
+                   // cGen.setCodigo(codigo + "");
+                   // cGen.setGenero(dAux.getMetaDatos(items.toString()));
                     //Cancion
-                    cCan.setCodigo(codigo + "");
-                    cCan.setNombre(items.getName());
+                   // cCan.setCodigo(codigo + "");
+                    cCan.setTitulo(items.getName());
                     if(items.getName().endsWith(".mp3")){
                         cCan.setDuracion(dAux.duracionMP3(items.toString()));
                     }else if(items.getName().endsWith(".wav")){
                         cCan.setDuracion(dAux.duracionWav(items.toString()));
                     }
                     cCan.setMusica(dAux.getBytes(items.toString()));
-                    cCan.setGenero(cGen);
+                //    cCan.setGenero(cGen);
                     favoritas.add(cCan);
                     Flist.addElement(items.getName());
                     System.out.println(items.getName());

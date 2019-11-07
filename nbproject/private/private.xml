@@ -5,11 +5,8 @@
         <group>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/UsuarioDAO.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/control/ControlReproductor.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/Conexion.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/Ventanas/Perfil.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/LikeDAO.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/Ventanas/Primaria.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/Usuario.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/ClaseGenero.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/MusicaDAO.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/ClaseCancion.java</file>
         </group>
     </open-files>
