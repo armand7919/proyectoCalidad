@@ -7,22 +7,16 @@ package controlBaseDatos;
 
 import TelematicoTools.Platillos.DiscoAux;
 import TelematicoTools.Platillos.DiscoOne;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.sql.rowset.serial.SerialBlob;
 import modelo.ClaseCancion;
 
 /**
@@ -153,19 +147,20 @@ public ClaseCancion lCanciones(){
      }
  }
 
-      public List<ClaseCancion> buscaCancion(String cancion){
+      public ArrayList<File> buscaCancion(ClaseCancion cancion){
       
       ClaseCancion cancionr;
       List<ClaseCancion> lista;
-      List<ClaseCancion> listaR= new ArrayList<>();
+      ArrayList<File> listaR= new ArrayList<>();
       MusicaDAO musicaDAO=new MusicaDAO();
       lista=musicaDAO.listaCacniones();
       
       for (int i=0; i<lista.size(); i++){
           cancionr=lista.get(i);
-          String veri=cancionr.getTitulo();
-          if(1==revisaCadena(veri,cancion)){
-           listaR.add(cancionr);
+          
+          if(1==revisaCadena(cancionr.getSmusica(),cancion.getTitulo())){
+           //   String cadenaarchivo=
+           listaR.add(new File(cancionr.getSmusica()));
            System.out.println(cancionr.getTitulo());
           }
           
@@ -176,8 +171,6 @@ public ClaseCancion lCanciones(){
   
       public int revisaCadena(String baseDatos, String busqueda){
         int testigo=0;
-        String aguja = "sql";             //palabra buscada
-        String pajar = "lenguaje SQL";    //texto
 
         //escapar y agregar limites de palabra completa - case-insensitive
         Pattern regex = Pattern.compile("\\b" + Pattern.quote(busqueda) + "\\b", Pattern.CASE_INSENSITIVE);
@@ -190,27 +183,10 @@ public ClaseCancion lCanciones(){
                              + "' en la posición " + match.start());
             testigo=1;
         } 
-      /* String palabra = "sql";
-      String texto = "lenguaje sql";
-      boolean resultado = palabra.contains(busqueda);
-
-      if(resultado){
-      System.out.println("palabra encontrada");
-      }else{
-        // System.out.println("palabra no encontrada");
-      }
-        
-        /*String[] palabras = busqueda.split("\\s+");
-        for (String palabra : palabras) {
-             if (baseDatos.contains(palabra)) {
-                 testigo=1;
-                 System.out.println("Encontrado");
-            //aquí tu lógica en caso que se haya encontrado...
-             }
-        }*/
         return testigo;
 }
     public static void main(String[] args){
+     /* Pruebasss*****************************1
         DiscoOne disc0=new DiscoOne();
         DiscoOne disc1=new DiscoOne();
         MusicaDAO musicaDAO=new MusicaDAO();
@@ -220,7 +196,7 @@ public ClaseCancion lCanciones(){
         
         
         List<ClaseCancion> lista;
-        lista=musicaDAO.buscaCancion("missing");
+        lista=musicaDAO.buscaCancion(cancion);
         for (int i=0; i<lista.size(); i++){
           cancionr=lista.get(i);
           System.out.println(cancionr.getSmusica());
@@ -228,7 +204,7 @@ public ClaseCancion lCanciones(){
         
         File aux=new File(cancionr.getSmusica());
         cancion.setMusica(disc0.getBytes(aux.toString()));
-        disc1.PlayMP3(cancion.getMusica());
+        disc1.PlayMP3(cancion.getMusica());**************1
         ////***************Prueba de agregar Cacnion****************///
      /*  ClaseCancion cancion=new ClaseCancion();
        ClaseCancion cancion2=new ClaseCancion();

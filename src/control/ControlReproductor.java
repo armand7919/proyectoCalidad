@@ -55,6 +55,7 @@ public class ControlReproductor implements MouseListener {
     private ArrayList<ClaseCancion> favoritas = new ArrayList<>();
     private ClaseCancion cCan;
     private ClaseGenero cGen;
+    private MusicaDAO musicaBD;
     private int codigo;
     private int botonPlay = 0; // variable para controlar la reproducción
     
@@ -72,20 +73,23 @@ public class ControlReproductor implements MouseListener {
     
     private void inicia (){
         //Eventos de los botones
-        this.pri.butSugerencias.addMouseListener (this);
         this.pri.butPausa.addMouseListener (this);
         this.pri.butPlay.addMouseListener (this);
         this.pri.butPreferencias.addMouseListener (this);
         this.pri.butStop.addMouseListener (this);
-        this.pri.butSugerencias.addMouseListener (this);
         this.pri.butLike.addMouseListener(this);
         this.pri.butCerrar.addMouseListener(this);
         this.pri.butPerfil.addMouseListener(this);
+        this.pri.but60.addMouseListener(this);
+        this.pri.but70.addMouseListener(this);
+        this.pri.but80.addMouseListener(this);
+        this.pri.but90.addMouseListener(this);
+        this.pri.butBusca.addMouseListener(this);
         //Evento para los temas de la lista favoritas
         this.pri.jList1.addMouseListener (this);
         this.pri.laUsuario.setText(nombreUsuario);
         //se inicializa la ventana
-        this.pri.setSize (650, 700);
+        this.pri.setSize (700, 900);
         this.pri.setVisible (true);
         mueveMouse.ControlProgress (this.pri.jProgressBar1,
                 this.pri.jSlider1, d1);
@@ -106,7 +110,7 @@ public class ControlReproductor implements MouseListener {
     public void mouseReleased (MouseEvent e) {
         
                 
-        if (e.getSource() == this.pri.butSugerencias){
+        if (e.getSource() == this.pri.but60){
             ClaseCancion cancion=null;
             MusicaDAO musica=new MusicaDAO();
             cancion=musica.lCanciones();
@@ -126,9 +130,11 @@ public class ControlReproductor implements MouseListener {
                 break;      
             }
         }else  if (e.getSource() == this.pri.butPreferencias){
-            MusicaDAO cancion=new MusicaDAO();
-            ClaseCancion musica=cancion.lCanciones();
-            getListaCanciones( getRutaCanciones(new File(musica.getAlbum())));
+            musicaBD=new MusicaDAO();
+            cCan=new ClaseCancion();
+            cCan.setTitulo("cabaret");
+            getListaCanciones(musicaBD.buscaCancion(cCan));
+           // getListaCanciones( getRutaCanciones(new File("C:\\Users\\ArmandRC\\Desktop\\rockola\\jazz 60\\Bobby Hutcherson\\Head On")));
             //mensaje("mis canciones");
         }else  if (e.getSource() == this.pri.butStop){
             d1.stop();
@@ -161,6 +167,11 @@ public class ControlReproductor implements MouseListener {
             perfil.setVisible(true);
             
             //introducir objeto clase de Perfil
+        }else if (e.getSource() == this.pri.butBusca){
+            musicaBD=new MusicaDAO();
+            cCan=new ClaseCancion();
+            cCan.setTitulo(this.pri.textBusca.getText());
+            getListaCanciones(musicaBD.buscaCancion(cCan));
         }
     }
 
