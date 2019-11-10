@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.io.File;
+
 /**
  *
  * @author ArmandRC
@@ -16,6 +18,8 @@ public class ClaseCancion {
     private String album;
     private String duracion;
     private String genero;
+    private String smusica;
+    private String simagen;
     private int decada;
     private int like;
     private byte[] musica;
@@ -28,8 +32,8 @@ public class ClaseCancion {
     }
 
     public ClaseCancion(String titulo, String artista,
-            String album,String duracion, String genero,
-            int decada, int like, byte[] imagen, byte[] musica) {
+            String album,String duracion, String genero,String smusica,
+            String simagen, int decada, int like, byte[] imagen, byte[] musica) {
         this.titulo = titulo;
         this.artista = artista;
         this.album = album;
@@ -39,6 +43,8 @@ public class ClaseCancion {
         this.like = like;
         this.musica = musica;
         this.imagen = imagen;
+        this.simagen = simagen;
+        this.smusica = smusica;
     }
 
     public String getGenero() {
@@ -112,6 +118,22 @@ public class ClaseCancion {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+    
+    public String getSmusica() {
+        return smusica;
+    }
+
+    public void setSmusica(String smusica) {
+        this.smusica = smusica;
+    }
+
+    public String getSimagen() {
+        return simagen;
+    }
+
+    public void setSimagen(String simagen) {
+        this.simagen = simagen;
     }
     
     @Override

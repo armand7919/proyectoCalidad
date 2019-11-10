@@ -109,7 +109,7 @@ public class ControlReproductor implements MouseListener {
         if (e.getSource() == this.pri.butSugerencias){
             ClaseCancion cancion=null;
             MusicaDAO musica=new MusicaDAO();
-            cancion=musica.lCacniones();
+            cancion=musica.lCanciones();
          //   System.out.println(cancion.getAlbum());
             getListaCanciones( getRutaCanciones(new File (cancion.getAlbum())));
             
@@ -127,7 +127,7 @@ public class ControlReproductor implements MouseListener {
             }
         }else  if (e.getSource() == this.pri.butPreferencias){
             MusicaDAO cancion=new MusicaDAO();
-            ClaseCancion musica=cancion.lCacniones();
+            ClaseCancion musica=cancion.lCanciones();
             getListaCanciones( getRutaCanciones(new File(musica.getAlbum())));
             //mensaje("mis canciones");
         }else  if (e.getSource() == this.pri.butStop){

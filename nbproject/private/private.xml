@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/UsuarioDAO.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/Conexion.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/control/ControlReproductor.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/ClaseGenero.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/control/ControlLista.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBaseDatos/MusicaDAO.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/ClaseCancion.java</file>
         </group>
