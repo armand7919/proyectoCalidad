@@ -25,7 +25,7 @@ public class UsuarioDAO {
     
  public boolean crear(Usuario user){
      if(c==null){
-        // c.conectar();
+         c.conectar();
      }//******************************
      try {
          String sql="INSERT INTO USUARIO(NOMBRE_USUARIO,APELLIDO_USUARIO, SEXO, CORREO_E, USER_NAME, PASSWORD, TELEFONO)VALUES(?,?,?,?,?,?,?);";
@@ -55,7 +55,7 @@ public class UsuarioDAO {
       Usuario usuario= null;
       List<Usuario> lista= new ArrayList<Usuario>();
       if(c==null){
-       //  c.conectar();
+         c.conectar();
       }
       try {//se justifica la siguiente cadena seguida porque en ocaciones no pasa bienel comando sql
          String sql="SELECT ID_USUARIO,NOMBRE_USUARIO,APELLIDO_USUARIO,SEXO,CORREO_E,USER_NAME,PASSWORD,TELEFONO FROM usuario;";
@@ -141,6 +141,26 @@ public class UsuarioDAO {
       }
 
          return verificador;   
+  }
+    public Usuario getUsuarioDAO(String user, String psw ){
+       
+        
+        Usuario usuario=new Usuario();
+      Usuario usuarioReturn=new Usuario();
+      List<Usuario> lista= new ArrayList<>();
+      UsuarioDAO userDAO=new UsuarioDAO();
+      lista=userDAO.listaUsuarios();
+      
+      for (int i=0; i<lista.size(); i++){
+          usuario=lista.get(i);
+          if(usuario.getUsuario().equals(user) &&
+                  usuario.getContrasena().equals(psw)){
+              usuarioReturn=lista.get(i);
+          }
+      }
+System.out.println("casi sale");
+    
+         return usuarioReturn;   
   }
   
      //   consultaLogin();

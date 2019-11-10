@@ -129,9 +129,8 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
                 this.dispose();
                 Primaria pri = new Primaria();
-                Secundaria sec = new Secundaria();
          
-                ControlReproductor cR = new ControlReproductor(pri,sec,pas,usu);
+                ControlReproductor cR = new ControlReproductor(pri,pas,usu);
                 //ControlLista cL = new ControlLista(sec);
             }else{
             

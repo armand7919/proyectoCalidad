@@ -1,7 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @(#)Rockolav2.java 1.82 09/10/19
+ *
+ * Armando Rivera Cervantes
+ * Copyright (c) Inc.
+ * Iztapalapa CDMX México
+ * Todos los derechos reservados.
+ *
+ * Más información y descripción del Copyright.
+ *
  */
 package controlBaseDatos;
 

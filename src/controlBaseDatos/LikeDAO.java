@@ -1,7 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @(#)Rockolav2.java 1.82 09/10/19
+ *
+ * Armando Rivera Cervantes
+ * Copyright (c) Inc.
+ * Iztapalapa CDMX México
+ * Todos los derechos reservados.
+ *
+ * Más información y descripción del Copyright.
+ *
  */
 
 package controlBaseDatos;
@@ -20,14 +26,14 @@ public class LikeDAO {
         c=new Conexion();
     }
     
-    public boolean darLike(String idUser, int idSong){
+    public boolean darLike(int idUser, int idSong){
         if(c==null){
          c.conectar();
         }//******************************
         try {
             String sql="INSERT INTO LIKED_SONGS(ID_USUARIO, ID_CANCION) VALUES(?, ?);";
             PreparedStatement ps=c.conectar().prepareStatement(sql);
-            ps.setString(1, idUser);
+            ps.setInt(1, idUser);
             ps.setInt(2, idSong);
             ps.execute();
             ps.close();

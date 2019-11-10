@@ -18,9 +18,9 @@ import TelematicoTools.Platillos.DiscoOne;
 import Ventanas.Login;
 import Ventanas.Perfil;
 import Ventanas.Primaria;
-import Ventanas.Secundaria;
 import controlBaseDatos.LikeDAO;
 import controlBaseDatos.MusicaDAO;
+import controlBaseDatos.UsuarioDAO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.ClaseCancion;
-import modelo.ClaseGenero;
+import modelo.Usuario;
 
 
 /**
@@ -38,36 +38,24 @@ import modelo.ClaseGenero;
 public class ControlReproductor implements MouseListener {
    
     
-    int idCancion;
-    String idUsuario;
-    String nombreUsuario;
-    Primaria pri = new Primaria();
-    Secundaria sec = new Secundaria();
-    
-    //clases
- //   private claseCancion cCancion;
-    
-    DiscoOne d1 = new DiscoOne();
-    DiscoAux dAux = new DiscoAux();
-    formRoot mueveMouse = new formRoot();
-    
-    //lista de favorita
+    private int idCancion;
+    private Usuario user;
+    private Primaria pri = new Primaria();
+    private DiscoOne d1 = new DiscoOne();
+    private DiscoAux dAux = new DiscoAux();
+    private formRoot mueveMouse = new formRoot();
     private ArrayList<ClaseCancion> favoritas = new ArrayList<>();
     private ClaseCancion cCan;
-    private ClaseGenero cGen;
     private MusicaDAO musicaBD;
-    private int codigo;
-    private int botonPlay = 0; // variable para controlar la reproducción
+    private int botonPlay = 0; // variable para controlar la reproducció
+    private DefaultListModel Flist = null;
+   
     
-    DefaultListModel Flist = null;
-    
-    
-    public ControlReproductor(Primaria pri, Secundaria sec,
-        String idUser, String nombreUsuario){
+    public ControlReproductor(Primaria pri,
+        String pass, String usu){
+        UsuarioDAO usuarioConsulta=new UsuarioDAO();
         this.pri = pri;
-        this.sec = sec;
-        this.idUsuario = idUser;
-        this.nombreUsuario = nombreUsuario;
+        this.user = usuarioConsulta.getUsuarioDAO(usu,pass);
         inicia();
     }
     
@@ -87,9 +75,9 @@ public class ControlReproductor implements MouseListener {
         this.pri.butBusca.addMouseListener(this);
         //Evento para los temas de la lista favoritas
         this.pri.jList1.addMouseListener (this);
-        this.pri.laUsuario.setText(nombreUsuario);
+        this.pri.laUsuario.setText(this.user.getUsuario());
         //se inicializa la ventana
-        this.pri.setSize (700, 900);
+        this.pri.setSize (607, 667);
         this.pri.setVisible (true);
         mueveMouse.ControlProgress (this.pri.jProgressBar1,
                 this.pri.jSlider1, d1);
@@ -107,16 +95,27 @@ public class ControlReproductor implements MouseListener {
     }
 
     @Override
-    public void mouseReleased (MouseEvent e) {
-        
-                
+    public void mouseReleased (MouseEvent e) {        
         if (e.getSource() == this.pri.but60){
-            ClaseCancion cancion=null;
-            MusicaDAO musica=new MusicaDAO();
-            cancion=musica.lCanciones();
-         //   System.out.println(cancion.getAlbum());
-            getListaCanciones( getRutaCanciones(new File (cancion.getAlbum())));
-            
+            musicaBD=new MusicaDAO();
+            cCan=new ClaseCancion();
+            cCan.setTitulo("60");
+            getListaCanciones(musicaBD.buscaCancion(cCan));
+        }else if (e.getSource() == this.pri.but70){
+            musicaBD=new MusicaDAO();
+            cCan=new ClaseCancion();
+            cCan.setTitulo("70");
+            getListaCanciones(musicaBD.buscaCancion(cCan));
+        }else if (e.getSource() == this.pri.but80){
+            musicaBD=new MusicaDAO();
+            cCan=new ClaseCancion();
+            cCan.setTitulo("80");
+            getListaCanciones(musicaBD.buscaCancion(cCan));
+        }else if (e.getSource() == this.pri.but90){
+            musicaBD=new MusicaDAO();
+            cCan=new ClaseCancion();
+            cCan.setTitulo("90");
+            getListaCanciones(musicaBD.buscaCancion(cCan));
         }else if (e.getSource() == this.pri.butPausa){
             botonPlay = 1;
             d1.pause();
@@ -134,21 +133,16 @@ public class ControlReproductor implements MouseListener {
             cCan=new ClaseCancion();
             cCan.setTitulo("cabaret");
             getListaCanciones(musicaBD.buscaCancion(cCan));
-           // getListaCanciones( getRutaCanciones(new File("C:\\Users\\ArmandRC\\Desktop\\rockola\\jazz 60\\Bobby Hutcherson\\Head On")));
-            //mensaje("mis canciones");
         }else  if (e.getSource() == this.pri.butStop){
             d1.stop();
-            //mensaje("Parar");
         }else if (e.getSource() == this.pri.butLike){
-            
             if(idCancion == 0){
                 JOptionPane.showMessageDialog(this.pri, "Intenta nuevamente");
             }else{
                 LikeDAO like=new LikeDAO();
-                like.darLike(idUsuario, idCancion );
+                like.darLike(this.user.getId(), idCancion );
                 JOptionPane.showMessageDialog(this.pri, "Diste ¡¡¡Like!!!");
             }
-
         }else if (e.getSource() == this.pri.jList1){
             botonPlay=0;
             if (e.getClickCount() == 2){
@@ -157,16 +151,12 @@ public class ControlReproductor implements MouseListener {
         }else if (e.getSource() == this.pri.butCerrar){
            this.pri.removeAll();
            this.d1.stop();
-           /* this.pri.setVisible(false);*/
            this.pri.dispose();
             Login login=new Login();
-            
             login.setVisible(true);
         }else if (e.getSource() == this.pri.butPerfil){
             Perfil perfil=new Perfil();
             perfil.setVisible(true);
-            
-            //introducir objeto clase de Perfil
         }else if (e.getSource() == this.pri.butBusca){
             musicaBD=new MusicaDAO();
             cCan=new ClaseCancion();
@@ -187,13 +177,12 @@ public class ControlReproductor implements MouseListener {
     
     private int prePlay (){
         int id = 0;
-        String idCan;
         
         for(ClaseCancion items: favoritas){
             if (items.getTitulo().equals(this.pri.jList1.getSelectedValue())){
                 play(items);
-               id=1;
-            //    System.out.println(id);
+                cCan=musicaBD.getCancionDAO(items);
+                id=cCan.getId();
             }
         }
         return id;
@@ -201,7 +190,6 @@ public class ControlReproductor implements MouseListener {
 
     
     private void play (ClaseCancion item){
-      //  cCancion = item;
         pri.nombreCan.setText (item.getTitulo());
         if (item.getTitulo().endsWith(".mp3")){
             d1.stop();
@@ -230,7 +218,7 @@ public class ControlReproductor implements MouseListener {
     }
     
     
-    //generar una lista oculta de los temas que no son favoritos 
+    //generar una lista para colocarlas en la lista del frame
     private void getListaCanciones(ArrayList<File> rootFiles){
         Flist = new DefaultListModel();
         pri.jList1.setModel(Flist);
@@ -240,15 +228,7 @@ public class ControlReproductor implements MouseListener {
             public void run() {
                 favoritas = new ArrayList<> ();
                 for ( File items : rootFiles){
-                   // cGen = new ClaseGenero();
                     cCan = new ClaseCancion();
-                    //Obtener Genero
-                    codigo = (int) Math.round(Math.random() * 9999);
-                    // Lo siguiente sirve para crear el codigo como una cadena
-                   // cGen.setCodigo(codigo + "");
-                   // cGen.setGenero(dAux.getMetaDatos(items.toString()));
-                    //Cancion
-                   // cCan.setCodigo(codigo + "");
                     cCan.setTitulo(items.getName());
                     if(items.getName().endsWith(".mp3")){
                         cCan.setDuracion(dAux.duracionMP3(items.toString()));
@@ -256,7 +236,7 @@ public class ControlReproductor implements MouseListener {
                         cCan.setDuracion(dAux.duracionWav(items.toString()));
                     }
                     cCan.setMusica(dAux.getBytes(items.toString()));
-                //    cCan.setGenero(cGen);
+                //    cCan.setId();
                     favoritas.add(cCan);
                     Flist.addElement(items.getName());
                     System.out.println(items.getName());

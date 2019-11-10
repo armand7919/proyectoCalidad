@@ -1,11 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @(#)Rockolav2.java 1.82 09/10/19
+ *
+ * Armando Rivera Cervantes
+ * Copyright (c) Inc.
+ * Iztapalapa CDMX México
+ * Todos los derechos reservados.
+ *
+ * Más información y descripción del Copyright.
+ *
  */
 package modelo;
-
-import java.io.File;
 
 /**
  *
@@ -20,31 +24,14 @@ public class ClaseCancion {
     private String genero;
     private String smusica;
     private String simagen;
+    private int id;
     private int decada;
     private int like;
     private byte[] musica;
     private byte[] imagen;
     
-    //Relación entre musica y claseGenero
-  //  private ClaseGenero genero;
 
     public ClaseCancion() {
-    }
-
-    public ClaseCancion(String titulo, String artista,
-            String album,String duracion, String genero,String smusica,
-            String simagen, int decada, int like, byte[] imagen, byte[] musica) {
-        this.titulo = titulo;
-        this.artista = artista;
-        this.album = album;
-        this.duracion = duracion;
-        this.genero = genero;
-        this.decada = decada;
-        this.like = like;
-        this.musica = musica;
-        this.imagen = imagen;
-        this.simagen = simagen;
-        this.smusica = smusica;
     }
 
     public String getGenero() {
@@ -55,7 +42,6 @@ public class ClaseCancion {
         this.genero = genero;
     }
 
-    
     public String getTitulo() {
         return titulo;
     }
@@ -134,6 +120,14 @@ public class ClaseCancion {
 
     public void setSimagen(String simagen) {
         this.simagen = simagen;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     @Override
