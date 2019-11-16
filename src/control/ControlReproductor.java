@@ -12,23 +12,25 @@
 
 package control;
 
+import java.awt.Image;
+import javax.swing.Icon;
 import TelematicoTools.FormMouse.formRoot;
 import TelematicoTools.Platillos.DiscoAux;
 import TelematicoTools.Platillos.DiscoOne;
 import Ventanas.Login;
 import Ventanas.Perfil;
 import Ventanas.Primaria;
-import controlBaseDatos.LikeDAO;
-import controlBaseDatos.MusicaDAO;
-import controlBaseDatos.UsuarioDAO;
+import controlBD.LikeDAO;
+import controlBD.CancionBDImp;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.ClaseCancion;
+import modelo.Cancion;
 import modelo.Usuario;
+
 
 
 /**
@@ -44,18 +46,17 @@ public class ControlReproductor implements MouseListener {
     private DiscoOne d1 = new DiscoOne();
     private DiscoAux dAux = new DiscoAux();
     private formRoot mueveMouse = new formRoot();
-    private ArrayList<ClaseCancion> favoritas = new ArrayList<>();
-    private ClaseCancion cCan;
-    private MusicaDAO musicaBD;
+    private ArrayList<Cancion> favoritas = new ArrayList<>();
+    private Cancion cCan;
+    private CancionBDImp musicaBD;
     private int botonPlay = 0; // variable para controlar la reproducció
     private DefaultListModel Flist = null;
-   
+    
     
     public ControlReproductor(Primaria pri,
-        String pass, String usu){
-        UsuarioDAO usuarioConsulta=new UsuarioDAO();
+        Usuario usuario){
         this.pri = pri;
-        this.user = usuarioConsulta.getUsuarioDAO(usu,pass);
+        this.user = usuario;
         inicia();
     }
     
@@ -82,6 +83,8 @@ public class ControlReproductor implements MouseListener {
         mueveMouse.ControlProgress (this.pri.jProgressBar1,
                 this.pri.jSlider1, d1);
         d1.getTimeRun (this.pri.jProgressBar1);
+        
+        
     }
 
     @Override
@@ -97,25 +100,13 @@ public class ControlReproductor implements MouseListener {
     @Override
     public void mouseReleased (MouseEvent e) {        
         if (e.getSource() == this.pri.but60){
-            musicaBD=new MusicaDAO();
-            cCan=new ClaseCancion();
-            cCan.setTitulo("60");
-            getListaCanciones(musicaBD.buscaCancion(cCan));
+            obtenerCancion("60s");
         }else if (e.getSource() == this.pri.but70){
-            musicaBD=new MusicaDAO();
-            cCan=new ClaseCancion();
-            cCan.setTitulo("70");
-            getListaCanciones(musicaBD.buscaCancion(cCan));
+            obtenerCancion("70s");
         }else if (e.getSource() == this.pri.but80){
-            musicaBD=new MusicaDAO();
-            cCan=new ClaseCancion();
-            cCan.setTitulo("80");
-            getListaCanciones(musicaBD.buscaCancion(cCan));
+            obtenerCancion("80s");
         }else if (e.getSource() == this.pri.but90){
-            musicaBD=new MusicaDAO();
-            cCan=new ClaseCancion();
-            cCan.setTitulo("90");
-            getListaCanciones(musicaBD.buscaCancion(cCan));
+            obtenerCancion("90s");
         }else if (e.getSource() == this.pri.butPausa){
             botonPlay = 1;
             d1.pause();
@@ -129,10 +120,9 @@ public class ControlReproductor implements MouseListener {
                 break;      
             }
         }else  if (e.getSource() == this.pri.butPreferencias){
-            musicaBD=new MusicaDAO();
-            cCan=new ClaseCancion();
-            cCan.setTitulo("cabaret");
-            getListaCanciones(musicaBD.buscaCancion(cCan));
+            musicaBD=new CancionBDImp();
+            listass(musicaBD.listaCanciones()); //mis cacniones 
+            this.pri.jList1.setModel(Flist);
         }else  if (e.getSource() == this.pri.butStop){
             d1.stop();
         }else if (e.getSource() == this.pri.butLike){
@@ -146,22 +136,15 @@ public class ControlReproductor implements MouseListener {
         }else if (e.getSource() == this.pri.jList1){
             botonPlay=0;
             if (e.getClickCount() == 2){
-                idCancion=prePlay();
+               idCancion=prePlay();
             }   
         }else if (e.getSource() == this.pri.butCerrar){
-           this.pri.removeAll();
-           this.d1.stop();
-           this.pri.dispose();
-            Login login=new Login();
-            login.setVisible(true);
+            cerrarAplicacion();
         }else if (e.getSource() == this.pri.butPerfil){
             Perfil perfil=new Perfil();
             perfil.setVisible(true);
         }else if (e.getSource() == this.pri.butBusca){
-            musicaBD=new MusicaDAO();
-            cCan=new ClaseCancion();
-            cCan.setTitulo(this.pri.textBusca.getText());
-            getListaCanciones(musicaBD.buscaCancion(cCan));
+            obtenerCancion(this.pri.textBusca.getText());
         }
     }
 
@@ -175,74 +158,58 @@ public class ControlReproductor implements MouseListener {
 
     }
     
+    private void cerrarAplicacion(){
+            this.pri.removeAll();
+            this.d1.stop();
+            this.pri.dispose();
+            Login login=new Login();
+            login.setVisible(true);
+    }
+    
+    
+    private void obtenerCancion(String busqueda){
+            musicaBD=new CancionBDImp();
+            cCan=new Cancion();
+            cCan.setTitulo(busqueda);
+            listass(musicaBD.buscaCancion(cCan));
+            this.pri.jList1.setModel(Flist);
+    }
+    
     private int prePlay (){
         int id = 0;
         
-        for(ClaseCancion items: favoritas){
+        for(Cancion items: favoritas){
             if (items.getTitulo().equals(this.pri.jList1.getSelectedValue())){
                 play(items);
-                cCan=musicaBD.getCancionDAO(items);
-                id=cCan.getId();
+                id=items.getId();
             }
         }
         return id;
     }
 
     
-    private void play (ClaseCancion item){
-        pri.nombreCan.setText (item.getTitulo());
-        if (item.getTitulo().endsWith(".mp3")){
-            d1.stop();
-            d1.PlayMP3(item.getMusica());
-        }else if (item.getTitulo().endsWith(".wav")){
-            d1.stop();
-            d1.PlayWAV(item.getMusica());
-        }
+    private void play (Cancion cancion){
+        CancionBDImp aux=new CancionBDImp();
+        imagenAlbum(aux.generaImagenAlbum(cancion));
+        pri.nombreCan.setText (cancion.getTitulo());
+        d1.stop();
+        d1.PlayMP3(aux.generaBytesMusica(cancion));
     }
     
-    private ArrayList<File> getRutaCanciones (File root){
-        ArrayList<File> canciones =new ArrayList<>();
-        File[] archivos = root.listFiles();
-        for ( File patch : archivos){
-            if ( (patch.isDirectory()) && (!patch.isHidden())){
-                canciones.addAll (getRutaCanciones(root));
-                System.out.println("- - - >" + patch.getName() + "<- - -");
-            }else{
-                if(patch.getName().endsWith(".mp3") ||
-                        patch.getName().endsWith(".wav")){
-                    canciones.add(patch);
-                }
-            }
-        }
-        return canciones;
+    private void imagenAlbum(Cancion cancion){
+        Icon icono = new ImageIcon (cancion.getImagen().getImage().getScaledInstance(pri.jLabel3.getWidth(),
+        pri.jLabel3.getHeight(), Image.SCALE_DEFAULT));
+        this.pri.jLabel3.setText(null);
+        this.pri.jLabel3.setIcon(icono);    
     }
     
-    
-    //generar una lista para colocarlas en la lista del frame
-    private void getListaCanciones(ArrayList<File> rootFiles){
-        Flist = new DefaultListModel();
-        pri.jList1.setModel(Flist);
+    private DefaultListModel listass(ArrayList<Cancion> lista){
+        this.Flist = new DefaultListModel();
+        this.favoritas=new ArrayList<Cancion>(lista);
         
-        new Thread() {
-            @Override
-            public void run() {
-                favoritas = new ArrayList<> ();
-                for ( File items : rootFiles){
-                    cCan = new ClaseCancion();
-                    cCan.setTitulo(items.getName());
-                    if(items.getName().endsWith(".mp3")){
-                        cCan.setDuracion(dAux.duracionMP3(items.toString()));
-                    }else if(items.getName().endsWith(".wav")){
-                        cCan.setDuracion(dAux.duracionWav(items.toString()));
-                    }
-                    cCan.setMusica(dAux.getBytes(items.toString()));
-                //    cCan.setId();
-                    favoritas.add(cCan);
-                    Flist.addElement(items.getName());
-                    System.out.println(items.getName());
-                }
-            }
-        }.start();
+        for (int i=0; i<lista.size(); i++){
+            this.Flist.addElement(lista.get(i).getTitulo());
+        }
+        return Flist;
     }
-
 }

@@ -7,8 +7,9 @@ package Ventanas;
 
 import control.ControlRegistro;
 import control.ControlReproductor;
-import controlBaseDatos.UsuarioDAO;
+import controlBD.UsuarioBDImp;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
@@ -119,18 +120,21 @@ public class Login extends javax.swing.JFrame {
 
     private void butAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butAceptarActionPerformed
         int identificador;
-        UsuarioDAO usuarioDAO=new UsuarioDAO();   
+        UsuarioBDImp usuarioDAO=new UsuarioBDImp();
+        Usuario usuario=new Usuario();
         String pas = new String (txtPssw.getPassword());
         String usu = new String (txtUsuario.getText());
-        identificador=usuarioDAO.consultaLogin(usu, pas);
+        usuario.setUsuario(usu);
+        usuario.setContrasena(pas);
+        usuario=usuarioDAO.consultaLogin(usuario);
 
-            if(identificador == 1 ){
+            if(usuario != null ){
                 
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
                 this.dispose();
                 Primaria pri = new Primaria();
          
-                ControlReproductor cR = new ControlReproductor(pri,pas,usu);
+                ControlReproductor cR = new ControlReproductor(pri, usuario);
                 //ControlLista cL = new ControlLista(sec);
             }else{
             

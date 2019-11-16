@@ -6,7 +6,7 @@
 package control;
 
 import Ventanas.Registro;
-import controlBaseDatos.UsuarioDAO;
+import controlBD.UsuarioBDImp;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
@@ -45,7 +45,7 @@ public class ControlRegistro implements MouseListener {
     public void registrar(Registro registro){
         String genero=null;
         Usuario user=new Usuario();
-        UsuarioDAO usuarioDAO=new UsuarioDAO(); //variable de clase usuarioBaseDatos que aun no se ha hecho
+        UsuarioBDImp usuarioDAO=new UsuarioBDImp(); //variable de clase usuarioBaseDatos que aun no se ha hecho
         if(registro.rButHombre.isEnabled())
             genero = "Masculino";
         if(registro.rButMujer.isEnabled())
