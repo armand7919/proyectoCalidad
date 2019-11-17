@@ -121,7 +121,7 @@ public class ControlReproductor implements MouseListener {
             }
         }else  if (e.getSource() == this.pri.butPreferencias){
             musicaBD=new CancionBDImp();
-            listass(musicaBD.listaCanciones()); //mis cacniones 
+            listass(musicaBD.misCanciones(user)); //mis cacniones 
             this.pri.jList1.setModel(Flist);
         }else  if (e.getSource() == this.pri.butStop){
             d1.stop();
