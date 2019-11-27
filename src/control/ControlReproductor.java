@@ -49,9 +49,7 @@ public class ControlReproductor implements MouseListener {
     private DefaultListModel Flist = null;
     
     
-    public ControlReproductor(Primaria pri,
-        Usuario usuario){
-        this.pri = pri;
+    public ControlReproductor(Usuario usuario){
         this.user = usuario;
         inicia();
     }

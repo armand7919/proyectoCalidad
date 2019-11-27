@@ -132,11 +132,8 @@ public class Login extends javax.swing.JFrame {
                     usuariob.getContrasena().equals(usuario.getContrasena())){
                 
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
-                this.dispose();
-                Primaria pri = new Primaria();
-         
-                ControlReproductor cR = new ControlReproductor(pri, usuario);
-                //ControlLista cL = new ControlLista(sec);
+                this.dispose();         
+                ControlReproductor cR = new ControlReproductor(usuario);
             }else{
             
             JOptionPane.showMessageDialog(this, "datos incorrectos");
