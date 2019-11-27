@@ -31,15 +31,11 @@ import javax.swing.JOptionPane;
 import modelo.Cancion;
 import modelo.Usuario;
 
-
-
 /**
  *
  * @author ArmandRC
  */
 public class ControlReproductor implements MouseListener {
-   
-    
     private int idCancion;
     private Usuario user;
     private Primaria pri = new Primaria();
@@ -78,7 +74,7 @@ public class ControlReproductor implements MouseListener {
         this.pri.jList1.addMouseListener (this);
         this.pri.laUsuario.setText(this.user.getUsuario());
         //se inicializa la ventana
-        this.pri.setSize (607, 667);
+        this.pri.setSize (607, 687);
         this.pri.setVisible (true);
         mueveMouse.ControlProgress (this.pri.jProgressBar1,
                 this.pri.jSlider1, d1);
@@ -166,7 +162,6 @@ public class ControlReproductor implements MouseListener {
             login.setVisible(true);
     }
     
-    
     private void obtenerCancion(String busqueda){
             musicaBD=new CancionBDImp();
             cCan=new Cancion();
@@ -177,21 +172,19 @@ public class ControlReproductor implements MouseListener {
     
     private int prePlay (){
         int id = 0;
-        
-        for(Cancion items: favoritas){
-            if (items.getTitulo().equals(this.pri.jList1.getSelectedValue())){
-                play(items);
-                id=items.getId();
+        for(Cancion cancion: favoritas){
+            if (cancion.getTitulo().equals(this.pri.jList1.getSelectedValue())){
+                id=cancion.getId();
+                play(cancion);
             }
         }
         return id;
     }
-
     
     private void play (Cancion cancion){
         CancionBDImp aux=new CancionBDImp();
         imagenAlbum(aux.generaImagenAlbum(cancion));
-        pri.nombreCan.setText (cancion.getTitulo());
+        this.pri.nombreCan.setText (cancion.getTitulo());
         d1.stop();
         d1.PlayMP3(aux.generaBytesMusica(cancion));
     }

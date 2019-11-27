@@ -33,7 +33,7 @@ public class AdminBD {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             cx=(Connection)DriverManager.getConnection(url,user,pass);
-            System.out.println("Conexion exitosa");
+         //   System.out.println("Conexion exitosa");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Conexion fallida");
         }
@@ -42,16 +42,10 @@ public class AdminBD {
     public void desconectar(){
         try {
             cx.close();
-            System.out.println("Se desconecto");
+          //  System.out.println("Se desconecto");
         } catch (SQLException ex) {
             System.out.println("No logro desconectarse");
         }
     }
     
-    /*Prueba de conexion exitosa
-    public static void main(String[] args){
-        AdminBD c=new AdminBD();
-        c.conectar();
-        c.desconectar();
-    }*/
 }

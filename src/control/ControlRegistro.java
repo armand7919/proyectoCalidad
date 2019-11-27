@@ -38,7 +38,7 @@ public class ControlRegistro implements MouseListener {
         //se inicializa la ventana
         this.registro.setSize (400, 500);
         this.registro.setVisible (true);
-        System.out.println("fase 1 inicia");
+    //    System.out.println("fase 1 inicia");
         
     }
     
@@ -62,7 +62,7 @@ public class ControlRegistro implements MouseListener {
            
         usuarioDAO.crear(user);
         
-        System.out.println("fase 4 registra ok"); //<-----verifica el nivel en que se encuentra 
+    //    System.out.println("fase 4 registra ok"); //<-----verifica el nivel en que se encuentra 
          //   usuarioRegistro.setNombre(registro.texNombre.getText());
             //se pasan todos los parametros del registro
          //   usuarioBaseDatos=usuarioRegistro;//una vez lleno el usuario 
@@ -78,7 +78,7 @@ public class ControlRegistro implements MouseListener {
             JOptionPane.showMessageDialog(this.registro, "Elija tipo de género");
             verificador=0;
         }
-        System.out.println("fase 2 verifica ");
+    //    System.out.println("fase 2 verifica ");
         
         return verificador;
     }

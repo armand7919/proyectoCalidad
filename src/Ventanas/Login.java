@@ -119,16 +119,17 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butAceptarActionPerformed
-        int identificador;
         UsuarioBDImp usuarioDAO=new UsuarioBDImp();
         Usuario usuario=new Usuario();
+        Usuario usuariob=null;
         String pas = new String (txtPssw.getPassword());
         String usu = new String (txtUsuario.getText());
         usuario.setUsuario(usu);
         usuario.setContrasena(pas);
-        usuario=usuarioDAO.consultaLogin(usuario);
+        usuariob=usuarioDAO.consultaLogin(usuario);
 
-            if(usuario != null ){
+            if(usuariob.getUsuario().equals(usuario.getUsuario())&&
+                    usuariob.getContrasena().equals(usuario.getContrasena())){
                 
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
                 this.dispose();

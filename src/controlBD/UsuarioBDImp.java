@@ -136,8 +136,8 @@ public class UsuarioBDImp implements UsuarioBD{
                     usuario.getContrasena().equals(usuario.getContrasena())){
                 return usuariob;
             }
+            
         }
-
          return usuariob;   
   }
  @Override 
