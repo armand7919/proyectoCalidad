@@ -132,8 +132,8 @@ public class UsuarioBDImp implements UsuarioBD{
         
         for (int i=0; i<lista.size(); i++){
             usuariob=lista.get(i);
-            if(usuario.getUsuario().equals(usuario.getUsuario()) &&
-                    usuario.getContrasena().equals(usuario.getContrasena())){
+            if(usuariob.getUsuario().equals(usuario.getUsuario()) &&
+                    usuariob.getContrasena().equals(usuario.getContrasena())){
                 return usuariob;
             }
             

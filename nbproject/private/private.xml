@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBD/CancionBD.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBD/CancionBDImp.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/control/ControlReproductor.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/rocko2/Rocko2.java</file>
             <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/Ventanas/Login.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/Ventanas/Primaria.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/control/ControlRegistro.java</file>
-            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBD/AdminBD.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/Cancion.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/controlBD/UsuarioBDImp.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/Ventanas/Reproductor.java</file>
+            <file>file:/C:/Users/ArmandRC/Documents/NetBeansProjects/Rocko2/src/modelo/Usuario.java</file>
         </group>
     </open-files>
 </project-private>

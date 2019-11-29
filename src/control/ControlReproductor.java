@@ -18,8 +18,7 @@ import TelematicoTools.FormMouse.formRoot;
 import TelematicoTools.Platillos.DiscoAux;
 import TelematicoTools.Platillos.DiscoOne;
 import Ventanas.Login;
-import Ventanas.Perfil;
-import Ventanas.Primaria;
+import Ventanas.Reproductor;
 import controlBD.LikeDAO;
 import controlBD.CancionBDImp;
 import java.awt.event.MouseEvent;
@@ -38,7 +37,7 @@ import modelo.Usuario;
 public class ControlReproductor implements MouseListener {
     private int idCancion;
     private Usuario user;
-    private Primaria pri = new Primaria();
+    private Reproductor pri = new Reproductor();
     private DiscoOne d1 = new DiscoOne();
     private DiscoAux dAux = new DiscoAux();
     private formRoot mueveMouse = new formRoot();
@@ -105,7 +104,7 @@ public class ControlReproductor implements MouseListener {
             botonPlay = 1;
             d1.pause();
         }else if (e.getSource() == this.pri.butPlay){
-            switch (botonPlay){
+              switch (botonPlay){
                 case 0:
                     idCancion = prePlay();
                 break;
@@ -135,8 +134,7 @@ public class ControlReproductor implements MouseListener {
         }else if (e.getSource() == this.pri.butCerrar){
             cerrarAplicacion();
         }else if (e.getSource() == this.pri.butPerfil){
-            Perfil perfil=new Perfil();
-            perfil.setVisible(true);
+            ControlPerfil perfil = new ControlPerfil(this.user);
         }else if (e.getSource() == this.pri.butBusca){
             obtenerCancion(this.pri.textBusca.getText());
         }
@@ -178,6 +176,7 @@ public class ControlReproductor implements MouseListener {
         }
         return id;
     }
+    
     
     private void play (Cancion cancion){
         CancionBDImp aux=new CancionBDImp();

@@ -57,7 +57,8 @@ public class ControlRegistro implements MouseListener {
         user.setSexo(genero);
         user.setCorreo(registro.textMail.getText());
         user.setUsuario(registro.textUser.getText());
-        user.setContrasena(registro.textPassword.getText());
+        String valorPass = new String(registro.textPassword.getPassword());
+        user.setContrasena(valorPass);
         user.setTelefono(58591623);
            
         usuarioDAO.crear(user);
@@ -78,7 +79,16 @@ public class ControlRegistro implements MouseListener {
             JOptionPane.showMessageDialog(this.registro, "Elija tipo de género");
             verificador=0;
         }
-    //    System.out.println("fase 2 verifica ");
+        
+         String valorPass = new String(registro.textPassword.getPassword());
+        String confirPass = new String(registro.textConfirmarPassword.getPassword());
+        if(valorPass.equals(confirPass)){
+            JOptionPane.showMessageDialog(this.registro, "Contraseñas correctas");
+        }else{
+            JOptionPane.showMessageDialog(this.registro, "Contraseñas incorrectas");
+            verificador=0;
+        }
+        
         
         return verificador;
     }

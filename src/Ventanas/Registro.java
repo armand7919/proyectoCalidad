@@ -5,6 +5,10 @@
  */
 package Ventanas;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import modelo.Usuario;
+
 /**
  *
  * @author ArmandRC
@@ -40,10 +44,12 @@ public class Registro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         textMail = new javax.swing.JTextField();
         textUser = new javax.swing.JTextField();
-        textPassword = new javax.swing.JTextField();
         textPhone = new javax.swing.JTextField();
         butAceptar = new javax.swing.JButton();
         butCancelar = new javax.swing.JButton();
+        textPassword = new javax.swing.JPasswordField();
+        jLabel8 = new javax.swing.JLabel();
+        textConfirmarPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,6 +73,18 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel3.setText("Sexo");
 
+        texNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texNombreKeyTyped(evt);
+            }
+        });
+
+        textApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textApellidoKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Correo electrónico");
 
         jLabel5.setText("Usuario");
@@ -75,9 +93,29 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel7.setText("Número telefónico");
 
+        textMail.setToolTipText("nombre.apellido@estudiantes.uacm.edu.mx");
+        textMail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textMailFocusLost(evt);
+            }
+        });
+
+        textPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textPhoneKeyTyped(evt);
+            }
+        });
+
         butAceptar.setText("Aceptar");
+        butAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butAceptarActionPerformed(evt);
+            }
+        });
 
         butCancelar.setText("Cancelar");
+
+        jLabel8.setText("Confirmar Contraseña");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,38 +126,43 @@ public class Registro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textMail)
-                                    .addComponent(textUser)
-                                    .addComponent(textPassword)
-                                    .addComponent(textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(18, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(butAceptar)
-                        .addGap(57, 57, 57)
-                        .addComponent(butCancelar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(texNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(textApellido)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                                 .addComponent(rButHombre)
                                 .addGap(18, 18, 18)
-                                .addComponent(rButMujer)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(rButMujer)
+                                .addContainerGap(96, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(texNombre)
+                                    .addComponent(textApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textMail)
+                            .addComponent(textUser)
+                            .addComponent(textPassword)
+                            .addComponent(textConfirmarPassword)
+                            .addComponent(textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(butAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(butCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,12 +175,12 @@ public class Registro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(textApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rButHombre)
                     .addComponent(rButMujer)
                     .addComponent(jLabel3))
-                .addGap(50, 50, 50)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,13 +194,17 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(textConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(butAceptar)
-                    .addComponent(butCancelar))
-                .addContainerGap())
+                    .addComponent(butCancelar)
+                    .addComponent(butAceptar))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -178,6 +225,52 @@ public class Registro extends javax.swing.JFrame {
             rButHombre.setEnabled(true);
         }
     }//GEN-LAST:event_rButMujerActionPerformed
+
+    private void textMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textMailFocusLost
+        // TODO add your handling code here:
+        Usuario us = new Usuario();
+        if (us.esCorreo(textMail.getText())) {
+        }else{
+              JOptionPane.showMessageDialog(null, "Correo invalido",
+                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_textMailFocusLost
+
+    private void butAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butAceptarActionPerformed
+
+    private void texNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texNombreKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        if ((c<'a' || c> 'z')&&(c<'A' || c>'Z') && (c != (char)KeyEvent.VK_BACK_SPACE)
+                && (c != (char)KeyEvent.VK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se acepta texto",
+                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_texNombreKeyTyped
+
+    private void textApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textApellidoKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        if ((c<'a' || c> 'z')&&(c<'A' || c>'Z') && (c != (char)KeyEvent.VK_BACK_SPACE)
+                && (c != (char)KeyEvent.VK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se acepta texto",
+                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_textApellidoKeyTyped
+
+    private void textPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPhoneKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if ((c<'0' || c> '9') && (c != (char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo se aceptan numeros",
+                    "Campo obligatorio", JOptionPane.INFORMATION_MESSAGE);
+        } 
+    }//GEN-LAST:event_textPhoneKeyTyped
 
     /**
      * @param args the command line arguments
@@ -205,6 +298,7 @@ public class Registro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -224,12 +318,14 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     public javax.swing.JRadioButton rButHombre;
     public javax.swing.JRadioButton rButMujer;
     public javax.swing.JTextField texNombre;
     public javax.swing.JTextField textApellido;
+    public javax.swing.JPasswordField textConfirmarPassword;
     public javax.swing.JTextField textMail;
-    public javax.swing.JTextField textPassword;
+    public javax.swing.JPasswordField textPassword;
     public javax.swing.JTextField textPhone;
     public javax.swing.JTextField textUser;
     // End of variables declaration//GEN-END:variables

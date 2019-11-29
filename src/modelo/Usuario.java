@@ -5,6 +5,9 @@
  */
 package modelo;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author ArmandRC
@@ -108,4 +111,14 @@ public class Usuario {
         this.telefono = telefono;
     }
     
+      public boolean esCorreo(String correo){
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("([A-Za-z0-9])*+[-\\_\\.]+([A-Za-z0-9])*@estudiantes.uacm.edu.mx");
+        mat = pat.matcher(correo);
+        if(mat.find())
+            return true;
+        else
+            return false;
+    }
 }

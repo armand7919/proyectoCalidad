@@ -133,7 +133,7 @@ public class Login extends javax.swing.JFrame {
                 
                 JOptionPane.showMessageDialog(this, "Inicio Sesion correctamente");
                 this.dispose();         
-                ControlReproductor cR = new ControlReproductor(usuario);
+                ControlReproductor cR = new ControlReproductor(usuariob);
             }else{
             
             JOptionPane.showMessageDialog(this, "datos incorrectos");

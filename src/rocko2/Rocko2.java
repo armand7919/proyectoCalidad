@@ -18,16 +18,6 @@ public class Rocko2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-      /*  Primaria pri = new Primaria();
-        Secundaria sec = new Secundaria();
-         
-        ControlReproductor cR = new ControlReproductor(pri,sec);
-        ControlLista cL = new ControlLista(sec);
-        
-       /* Registro registro = new Registro();
-        
-        ControlRegistro iniciaRegistro = new ControlRegistro(registro);*/
       
       Login login=new Login();
       login.setVisible(true);
